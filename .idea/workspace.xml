@@ -19,15 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="Finished map">
-      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project-template.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/interfaces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/interfaces/Movable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="Working commit 1.0" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,7 +98,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="Finished map" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished map" />
+    <MESSAGE value="Working commit 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working commit 1.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1606055270492">
@@ -125,22 +118,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="460" y="69" key="Github.UntrackedFilesDialog/0.0.1366.728@0.0.1366.728" timestamp="1605910116893" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1606059973853">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1606060187011">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606059973853" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1606059973853">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606060187011" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1606060187011">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606059973853" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1606059973853">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606060187011" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1606060187011">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606059973853" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1606059973853">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606060187011" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1606060187011">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606059973853" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606060187011" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1606056445034">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
