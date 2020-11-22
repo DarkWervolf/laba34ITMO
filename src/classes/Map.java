@@ -4,22 +4,37 @@ import classes.abstracts.Thing;
 
 public class Map {
     public class Point{
-        private int x;
-        private int y;
-        private boolean isEmpty;
+        private boolean isEmpty_Person;
+        private boolean isEmpty_Thing;
         private Person person;
         private Thing thing;
 
+        public Point() {
+            this.isEmpty_Thing = true;
+            this.isEmpty_Person = true;
+            this.person = null;
+            this.thing = null;
+        }
+
         public void occupy(Person person){
             this.person = person;
+            this.isEmpty_Person = false;
+            this.isEmpty_Thing = false;
         }
 
         public void occupy(Thing thing){
             this.thing = thing;
+            isEmpty_Thing = false;
         }
 
         public void leave(){
             this.person = null;
+            isEmpty_Person = true;
+        }
+
+        public void takeAway(){
+            this.thing = null;
+            isEmpty_Thing = true;
         }
 
         public boolean isHere(Person person){
@@ -35,6 +50,22 @@ public class Map {
             }
             else return false;
         }
+
+        public boolean isEmpty_Person() {
+            return isEmpty_Person;
+        }
+
+        public void setIsEmpty_Person(boolean empty_Person) {
+            isEmpty_Person = empty_Person;
+        }
+
+        public boolean isEmpty_Thing() {
+            return isEmpty_Thing;
+        }
+
+        public void setIsEmpty_Thing(boolean empty_Thing) {
+            isEmpty_Thing = empty_Thing;
+        }
     }
 
     private Point[][] points;
@@ -43,6 +74,11 @@ public class Map {
     public Map(int size) {
         this.size = size;
         points = new Point[size][size];
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++) {
+                points[i][j] = new Point();
+            }
+        }
     }
 
     /*
@@ -50,7 +86,7 @@ public class Map {
      */
 
     public void setPosition(Person person, int x, int y){
-        if (!points[x][y].isEmpty){
+        if (!pointIsEmpty(person, x, y)){
             System.out.println("This point is already taken, please, choose another");
         }else {
             points[x][y].occupy(person);
@@ -59,7 +95,7 @@ public class Map {
     }
 
     public void setPosition(Thing thing, int x, int y){
-        if (!points[x][y].isEmpty){
+        if (!pointIsEmpty(thing, x, y)){
             System.out.println("This point is already taken, please, choose another");
         }else {
             points[x][y].occupy(thing);
@@ -124,7 +160,7 @@ public class Map {
     }
 
     public void move(Person person, int x, int y){
-        if (!points[x][y].isEmpty){
+        if (!pointIsEmpty(person, x, y)){
             System.out.println("This point is already taken, please, choose another");
         }else {
             int[] position = getPosition(person);
@@ -135,7 +171,7 @@ public class Map {
     }
 
     public void move(Thing thing, int x, int y){
-        if (!points[x][y].isEmpty){
+        if (!pointIsEmpty(thing, x, y)){
             System.out.println("This point is already taken, please, choose another");
         }else {
             int[] position = getPosition(thing);
@@ -145,8 +181,15 @@ public class Map {
         }
     }
 
-    public boolean pointIsEmpty(int x, int y){
-        if (points[x][y].isEmpty){
+    public boolean pointIsEmpty(Person person, int x, int y){
+        if (points[x][y].isEmpty_Person()){
+            return true;
+        }
+        else return false;
+    }
+
+    public boolean pointIsEmpty(Thing thing, int x, int y){
+        if (points[x][y].isEmpty_Thing()){
             return true;
         }
         else return false;

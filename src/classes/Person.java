@@ -53,12 +53,7 @@ public class Person implements Movable, Alive {
 
     @Override
     public void move(Map map, int x, int y) {
-
-    }
-
-    @Override
-    public void printReport() {
-
+        //will be made soon
     }
 
     @Override

@@ -8,7 +8,8 @@ public class Container extends Thing {
     private Person prisoner;
     private Thing treasure;
 
-    public Container(int size, boolean isEmpty) {
+    public Container(String title, int size, boolean isEmpty) {
+        super(title);
         this.size = size;
         this.isEmpty = isEmpty;
         this.prisoner = null;
