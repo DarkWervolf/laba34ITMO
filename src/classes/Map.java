@@ -3,7 +3,7 @@ package classes;
 import classes.abstracts.Thing;
 
 public class Map {
-    public class Point{
+    protected class Point{
         private boolean isEmpty_Person;
         private boolean isEmpty_Thing;
         private Person person;
@@ -16,54 +16,53 @@ public class Map {
             this.thing = null;
         }
 
-        public void occupy(Person person){
+        protected void occupy(Person person){
             this.person = person;
             this.isEmpty_Person = false;
-            this.isEmpty_Thing = false;
         }
 
-        public void occupy(Thing thing){
+        protected void put(Thing thing){
             this.thing = thing;
             isEmpty_Thing = false;
         }
 
-        public void leave(){
+        protected void leave(){
             this.person = null;
             isEmpty_Person = true;
         }
 
-        public void takeAway(){
+        protected void takeAway(){
             this.thing = null;
             isEmpty_Thing = true;
         }
 
-        public boolean isHere(Person person){
+        protected boolean isHere(Person person){
             if (this.person == person){
                 return true;
             }
             else return false;
         }
 
-        public boolean isHere(Thing thing){
+        protected boolean isHere(Thing thing){
             if (this.thing == thing){
                 return true;
             }
             else return false;
         }
 
-        public boolean isEmpty_Person() {
+        protected boolean isEmpty_Person() {
             return isEmpty_Person;
         }
 
-        public void setIsEmpty_Person(boolean empty_Person) {
+        protected void setIsEmpty_Person(boolean empty_Person) {
             isEmpty_Person = empty_Person;
         }
 
-        public boolean isEmpty_Thing() {
+        protected boolean isEmpty_Thing() {
             return isEmpty_Thing;
         }
 
-        public void setIsEmpty_Thing(boolean empty_Thing) {
+        protected void setIsEmpty_Thing(boolean empty_Thing) {
             isEmpty_Thing = empty_Thing;
         }
     }
@@ -86,24 +85,32 @@ public class Map {
      */
 
     public void setPosition(Person person, int x, int y){
-        if (!pointIsEmpty(person, x, y)){
-            System.out.println("This point is already taken, please, choose another");
+        if (!ifCoordinatesAreCorrectCheck(x, y)){
+            System.out.println("Coordinates are not correct, please, input different");
         }else {
-            points[x][y].occupy(person);
-            System.out.println(person.getName() + " is now located in point " + x + " " + y);
+            if (!pointIsEmpty(person, x, y)) {
+                System.out.println("This point is already taken, please, choose another");
+            } else {
+                points[x][y].occupy(person);
+                System.out.println(person.getName() + " is now located in point " + x + " " + y);
+            }
         }
     }
 
     public void setPosition(Thing thing, int x, int y){
-        if (!pointIsEmpty(thing, x, y)){
-            System.out.println("This point is already taken, please, choose another");
+        if (!ifCoordinatesAreCorrectCheck(x, y)){
+            System.out.println("Coordinates are not correct, please, input different");
         }else {
-            points[x][y].occupy(thing);
-            System.out.println(thing.getTitle() + " is placed in point " + x + " " + y);
+            if (!pointIsEmpty(thing, x, y)) {
+                System.out.println("This point is already taken, please, choose another");
+            } else {
+                points[x][y].put(thing);
+                System.out.println(thing.getTitle() + " is placed in point " + x + " " + y);
+            }
         }
     }
 
-    public int[] getPosition(Person person){
+    protected int[] getPosition(Person person){
         int[] position = new int[2]; //x, y coordinates of a person
         boolean flag_posFound = false; //checking, if person is found
         for (int x = 0; x < points.length; x++){
@@ -122,7 +129,7 @@ public class Map {
         }
     }
 
-    public int[] getPosition(Thing thing){
+    protected int[] getPosition(Thing thing){
         int[] position = new int[2]; //x, y coordinates of a person
         boolean flag_posFound = false; //checking, if person is found
         for (int x = 0; x < points.length; x++){
@@ -160,38 +167,86 @@ public class Map {
     }
 
     public void move(Person person, int x, int y){
-        if (!pointIsEmpty(person, x, y)){
-            System.out.println("This point is already taken, please, choose another");
+        if (!ifCoordinatesAreCorrectCheck(x, y)){
+            System.out.println("Coordinates are not correct, please, input different");
         }else {
-            int[] position = getPosition(person);
-            points[position[0]][position[1]].leave();
-            points[x][y].occupy(person);
-            System.out.println(person.getName() + " moved to point " + x + " " + y);
+            if (!pointIsEmpty(person, x, y)) {
+                System.out.println("This point is already taken, please, choose another");
+            } else {
+                int[] position = getPosition(person);
+                points[position[0]][position[1]].leave();
+                points[x][y].occupy(person);
+                System.out.println(person.getName() + " moved to point " + x + " " + y);
+            }
         }
     }
 
     public void move(Thing thing, int x, int y){
-        if (!pointIsEmpty(thing, x, y)){
-            System.out.println("This point is already taken, please, choose another");
+        if (!ifCoordinatesAreCorrectCheck(x, y)){
+            System.out.println("Coordinates are not correct, please, input different");
         }else {
-            int[] position = getPosition(thing);
-            points[position[0]][position[1]].leave();
-            points[x][y].occupy(thing);
-            System.out.println(thing.getTitle() + " was moved to point " + x + " " + y);
+            if (!pointIsEmpty(thing, x, y)) {
+                System.out.println("This point is already taken, please, choose another");
+            } else {
+                int[] position = getPosition(thing);
+                points[position[0]][position[1]].takeAway();
+                points[x][y].put(thing);
+                System.out.println(thing.getTitle() + " was moved to point " + x + " " + y);
+            }
         }
     }
 
-    public boolean pointIsEmpty(Person person, int x, int y){
-        if (points[x][y].isEmpty_Person()){
+    protected boolean pointIsEmpty(Person person, int x, int y){
+        if (!ifCoordinatesAreCorrectCheck(x, y)){
+            System.out.println("Coordinates are not correct, please, input different");
+            return false;
+        }else {
+            if (points[x][y].isEmpty_Person()) {
+                return true;
+            } else return false;
+        }
+    }
+
+    protected boolean pointIsEmpty(Thing thing, int x, int y){
+        if (!ifCoordinatesAreCorrectCheck(x, y)){
+            System.out.println("Coordinates are not correct, please, input different");
+            return false;
+        }else {
+            if (points[x][y].isEmpty_Thing()) {
+                return true;
+            } else return false;
+        }
+    }
+
+    protected boolean ifCoordinatesAreCorrectCheck(int x, int y){
+        //other boolean methods will also return false if coordinates are not correct
+        if (x >= 0 && y >= 0 && x <= this.size && y <= this.size){
             return true;
         }
         else return false;
     }
 
-    public boolean pointIsEmpty(Thing thing, int x, int y){
-        if (points[x][y].isEmpty_Thing()){
-            return true;
+    public void printMap(){
+        System.out.println("Current state of map is:");
+        String dotOut;
+        StringBuilder sb = new StringBuilder();
+        for (int i = this.size-1; i > -1; i--) {
+            for (int j = 0; j < this.size; j++) {
+                if (!points[j][i].isEmpty_Thing()) {
+                    sb.append("T");
+                }else {
+                    sb.append("0");
+                }
+                if (!points[j][i].isEmpty_Person()){
+                    sb.append("P");
+                }else {
+                    sb.append("0");
+                }
+                dotOut = sb.toString();
+                System.out.print(dotOut + " ");
+                sb.delete(0, sb.length());
+            }
+            System.out.println();
         }
-        else return false;
     }
 }
