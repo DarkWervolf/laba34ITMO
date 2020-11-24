@@ -84,12 +84,16 @@ public class Map {
         All the points are located in First Quarter of Squared system of coordinates.
      */
 
+    public int getSize() {
+        return size;
+    }
+
     public boolean setPosition(Person person, int x, int y){
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");
             return false;
         }else {
-            if (!pointIsEmpty(person, x, y)) {
+            if (!pointIsEmptyPerson(x, y)) {
                 System.out.println("This point is already taken, please, choose another");
                 return false;
             } else {
@@ -104,7 +108,7 @@ public class Map {
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");
         }else {
-            if (!pointIsEmpty(thing, x, y)) {
+            if (!pointIsEmptyThing(x, y)) {
                 System.out.println("This point is already taken, please, choose another");
             } else {
                 points[x][y].put(thing);
@@ -173,7 +177,7 @@ public class Map {
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");
         }else {
-            if (!pointIsEmpty(person, x, y)) {
+            if (!pointIsEmptyPerson(x, y)) {
                 System.out.println("This point is already taken, please, choose another");
             } else {
                 int[] position = getPosition(person);
@@ -188,7 +192,7 @@ public class Map {
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");
         }else {
-            if (!pointIsEmpty(thing, x, y)) {
+            if (!pointIsEmptyThing(x, y)) {
                 System.out.println("This point is already taken, please, choose another");
             } else {
                 int[] position = getPosition(thing);
@@ -199,7 +203,7 @@ public class Map {
         }
     }
 
-    public boolean pointIsEmpty(Person person, int x, int y){
+    public boolean pointIsEmptyPerson(int x, int y){
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");
             return false;
@@ -210,7 +214,7 @@ public class Map {
         }
     }
 
-    public boolean pointIsEmpty(Thing thing, int x, int y){
+    public boolean pointIsEmptyThing(int x, int y){
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");
             return false;
@@ -223,7 +227,7 @@ public class Map {
 
     protected boolean ifCoordinatesAreCorrectCheck(int x, int y){
         //other boolean methods will also return false if coordinates are not correct
-        if (x >= 0 && y >= 0 && x <= this.size && y <= this.size){
+        if (x >= 0 && y >= 0 && x < this.size && y < this.size){
             return true;
         }
         else return false;
@@ -236,12 +240,12 @@ public class Map {
         for (int i = this.size-1; i > -1; i--) {
             for (int j = 0; j < this.size; j++) {
                 if (!points[j][i].isEmpty_Thing()) {
-                    sb.append("T");
+                    sb.append((char) points[j][i].thing.getTitle().charAt(0));
                 }else {
                     sb.append("0");
                 }
                 if (!points[j][i].isEmpty_Person()){
-                    sb.append("P");
+                    sb.append((char) points[j][i].person.getName().charAt(0));
                 }else {
                     sb.append("0");
                 }

@@ -11,6 +11,13 @@ public enum Names {
     Vova,
     Donut,
     Mark,
+    Peter,
+    Lee,
+    Lili,
+    Harry,
+    Hermione,
+    Ron,
+    Zabini,
     Kevin;
 
     private static final List<Names> VALUES =

@@ -2,6 +2,7 @@ package classes;
 
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
+import classes.enums.ActionTypeStatic;
 import classes.enums.EmotionType;
 import classes.interfaces.Alive;
 import classes.interfaces.Movable;
@@ -10,16 +11,10 @@ import java.util.Vector;
 public class Person implements Movable, Alive {
 
     private String name;
-    private Vector<ActionStatic> actionsStatic;
-    private Vector<ActionPerson> actionsPerson;
-    private Vector<ActionThing> actionsThing;
     private Emotion currentEmotion;
 
     public Person(String name) {
         this.name = name;
-        actionsStatic = new Vector<>();
-        actionsPerson = new Vector<>();
-        actionsThing = new Vector<>();
         currentEmotion = new Emotion();
         this.shoutIwasBorn();
         this.randomEmotion();
@@ -46,40 +41,6 @@ public class Person implements Movable, Alive {
         this.name = name;
     }
 
-    public void addAction(Action action) {
-        if (action.getClass() == ActionStatic.class){
-            actionsStatic.add((ActionStatic) action);
-        } else if (action.getClass() == ActionPerson.class){
-            actionsPerson.add((ActionPerson) action);
-        }
-        else {
-            actionsThing.add((ActionThing) action);
-        }
-    }
-
-    public ActionStatic getActionStatic(int index) {
-        return actionsStatic.elementAt(index);
-    }
-
-    public ActionPerson getActionPerson(int index){
-        return actionsPerson.elementAt(index);
-    }
-
-    public ActionThing getActionThing(int index){
-        return actionsThing.elementAt(index);
-    }
-
-    public int getActionsStaticSize(){
-        return actionsStatic.size();
-    }
-
-    public int getActionsPersonSize(){
-        return actionsPerson.size();
-    }
-
-    public int getActionsThingSize(){
-        return actionsThing.size();
-    }
 
     public void setEmotion(Emotion emotion) {
         this.currentEmotion = emotion;

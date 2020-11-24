@@ -16,18 +16,17 @@ public class Model {
     public Model() {
     }
 
-    protected void performStaticActions(int NPCquantity){
+    protected void performStaticActions() {
         int randomPerformActionCycles = (int) (Math.random() * 20);
         int randomNPC;
-        int randomNPCAction;
+        int randomValue;
         for (int i = 0; i < randomPerformActionCycles; i++) {
             //random static action performance
-            randomNPC = (int) (Math.random() * (NPCquantity));
-            if (this.NPCs.elementAt(randomNPC).getActionsStaticSize() > 0) {
-                randomNPCAction = (int) (Math.random() * (this.NPCs.elementAt(randomNPC).getActionsStaticSize() - 1));
-                this.NPCs.elementAt(randomNPC).performAction(this.NPCs.elementAt(randomNPC).getActionStatic(randomNPCAction));
-            }
+            randomNPC = (int) (Math.random() * (NPCs.size()));
+            randomValue = (int) (Math.random() * ActionTypeStatic.values().length);
+            this.NPCs.elementAt(randomNPC).performAction(new ActionStatic(randomValue, ActionTypeStatic.randomAction()));
             System.out.println();
+
             //making pause between actions
             try {
                 Thread.sleep(1000);
@@ -37,13 +36,45 @@ public class Model {
         }
     }
 
+    protected void performPersonActions(){
+        int randomPerformActionCycles = (int) (Math.random() * 20);
+        int randomNPC;
+        int randomVictim;
+        int randomValue;
+        for (int i = 0; i < randomPerformActionCycles; i++) {
+            //getting indexes of NPC and its victim
+            randomNPC = (int) (Math.random() * (NPCs.size()));
+            randomVictim = (int) (Math.random() * (NPCs.size()));
+            while (randomNPC == randomVictim){
+                randomNPC = (int) (Math.random() * (NPCs.size()));
+                randomVictim = (int) (Math.random() * (NPCs.size()));
+            }
+
+            //checking if victim is near
+            int xNPC, yNPC, xVictim, yVictim;
+            xNPC = map.getPosition(NPCs.elementAt(randomNPC))[0]; //getting coordinates of NPC
+            yNPC = map.getPosition(NPCs.elementAt(randomNPC))[1];
+            xVictim = map.getPosition(NPCs.elementAt(randomVictim))[0]; //getting coordinates of victim
+            yVictim = map.getPosition(NPCs.elementAt(randomVictim))[1];
+            int newX = xNPC; //making new coordinates
+            int newY = yNPC;
+            while (!(Math.abs(newX - xVictim) < 2 && Math.abs(newY-yVictim)<2 && map.pointIsEmptyPerson(newX, newY))){ //moving to victim, if not near
+                newX = (int) (Math.random() * (map.getSize()-1) + (xVictim-1));
+                newY = (int) (Math.random() * (map.getSize()-1) + (yVictim-1));
+            }
+            NPCs.elementAt(randomNPC).move(this.map, newX, newY); //moving NPC
+
+
+        }
+    }
+
     public void runRandom(){
         //creating map
         int mapSize = (int) (Math.random() * 10 + 4);
         map = new Map(mapSize);
 
         //creating NPCs
-        int NPCquantity = (int) (Math.random() * (mapSize-1) + 2);
+        int NPCquantity = (int) (Math.random() * (map.getSize()-1) + 2);
         NPCs = new Vector<>();
         for (int i = 0; i < NPCquantity; i++) {
             NPCs.add(new Person(Names.randomName()));
@@ -53,12 +84,12 @@ public class Model {
         int x;
         int y;
         for (int i = 0; i < NPCquantity; i++) {
-            x = (int) (Math.random() * (mapSize-1));
-            y = (int) (Math.random() * (mapSize-1));
+            x = (int) (Math.random() * (map.getSize()-1));
+            y = (int) (Math.random() * (map.getSize()-1));
 
-            while (!map.pointIsEmpty(NPCs.get(i), x, y)){
-                x = (int) (Math.random() * (mapSize-1));
-                y = (int) (Math.random() * (mapSize-1));
+            while (!map.pointIsEmptyPerson(x, y)){
+                x = (int) (Math.random() * (map.getSize()-1));
+                y = (int) (Math.random() * (map.getSize()-1));
             }
 
             map.setPosition(NPCs.get(i), x, y);
@@ -74,21 +105,8 @@ public class Model {
             actions.add(new ActionStatic(actionValue, ActionTypeStatic.randomAction()));
         }
 
-        //adding actions to NPCs
-        int randomAction;
-        int randomStart = (int) (Math.random() * (NPCquantity-2));
-        int randomNumberOfCycles = (int) (Math.random() * 3 + 1);
-
-        for (int i = 0; i < randomNumberOfCycles; i++) {
-            for (int j = randomStart; j < NPCquantity; j++) {
-                randomAction = (int) (Math.random() * anctionsQuantity);
-                NPCs.elementAt(j).addAction(actions.elementAt(randomAction));
-            }
-        }
-
         //random performing static actions
-        performStaticActions(NPCquantity);
-
-
+        //performStaticActions();
+        performPersonActions();
     }
 }
