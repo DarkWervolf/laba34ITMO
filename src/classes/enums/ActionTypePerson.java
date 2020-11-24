@@ -8,6 +8,8 @@ import java.util.Random;
 public enum ActionTypePerson {
     HANGING (" is hanging "),
     EATING (" is eating "),
+    BEATING(" is beating"),
+    HUGGING (" is hugging"),
     KICKING (" is kicking ");
 
     private final String actionOutput;

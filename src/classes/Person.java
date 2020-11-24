@@ -69,6 +69,7 @@ public class Person implements Movable, Alive {
                 victim.setEmotion(new Emotion(action.getValue(), EmotionType.ANGRY));
                 victim.goNuts();
                 break;
+            case BEATING:
             case KICKING:
                 System.out.println(this.getName() + action.perform(victim));
                 if (action.getValue() > 5){
@@ -77,8 +78,16 @@ public class Person implements Movable, Alive {
                     victim.setEmotion(new Emotion(action.getValue(), EmotionType.ANGRY));
                 }
                 break;
+            case HUGGING:
+                System.out.println(this.getName() + action.perform(victim));
+                if (action.getValue() > 5){
+                    victim.setEmotion(new Emotion(action.getValue(), EmotionType.HAPPY));
+                } else{
+                    victim.setEmotion(new Emotion(action.getValue(), EmotionType.NEUTRAL));
+                }
+                break;
             default:
-                System.out.println(this.getName() + action.getType().outStringAction());
+                System.out.println(this.getName() + action.perform(victim));
                 victim.randomEmotion();
                 System.out.println(victim.getName() + ": what the hell just happend?");
         }

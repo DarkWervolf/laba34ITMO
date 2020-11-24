@@ -2,8 +2,7 @@ package classes;
 
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
-import classes.enums.ActionTypeStatic;
-import classes.enums.Names;
+import classes.enums.*;
 
 import java.util.Vector;
 
@@ -50,21 +49,33 @@ public class Model {
                 randomVictim = (int) (Math.random() * (NPCs.size()));
             }
 
-            //checking if victim is near
+            //introducing variables
             int xNPC, yNPC, xVictim, yVictim;
             xNPC = map.getPosition(NPCs.elementAt(randomNPC))[0]; //getting coordinates of NPC
             yNPC = map.getPosition(NPCs.elementAt(randomNPC))[1];
             xVictim = map.getPosition(NPCs.elementAt(randomVictim))[0]; //getting coordinates of victim
             yVictim = map.getPosition(NPCs.elementAt(randomVictim))[1];
-            int newX = xNPC; //making new coordinates
-            int newY = yNPC;
-            while (!(Math.abs(newX - xVictim) < 2 && Math.abs(newY-yVictim)<2 && map.pointIsEmptyPerson(newX, newY))){ //moving to victim, if not near
-                newX = (int) (Math.random() * (map.getSize()-1) + (xVictim-1));
-                newY = (int) (Math.random() * (map.getSize()-1) + (yVictim-1));
+            //checking if victim is near and moving NPC if necessary
+            if (!(Math.abs(xNPC - xVictim) < 2 && Math.abs(xNPC-yVictim)<2)){
+                int newX = xNPC; //making new coordinates
+                int newY = yNPC;
+                while (!(Math.abs(newX - xVictim) < 2 && Math.abs(newY-yVictim)<2 && map.pointIsEmptyPerson(newX, newY))){ //moving to victim, if not near
+                    newX = (int) (Math.random() * (map.getSize()-1) + (xVictim-1));
+                    newY = (int) (Math.random() * (map.getSize()-1) + (yVictim-1));
+                }
+                NPCs.elementAt(randomNPC).move(this.map, newX, newY); //moving NPC
             }
-            NPCs.elementAt(randomNPC).move(this.map, newX, newY); //moving NPC
+            //performing actions
+            randomValue = (int) (Math.random() * ActionTypePerson.values().length);
+            this.NPCs.elementAt(randomNPC).performAction(new ActionPerson(randomValue, ActionTypePerson.randomAction()), this.NPCs.elementAt(randomVictim));
+            System.out.println();
 
-
+            //making pause between actions
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -96,17 +107,22 @@ public class Model {
         }
         map.printMap();
 
-        //creating actions
-        actions = new Vector<>();
-        int anctionsQuantity = (int) (Math.random() * (NPCquantity-1) + 2);
-        int actionValue;
-        for (int i = 0; i < anctionsQuantity; i++) {
-            actionValue = (int) (Math.random() * 10);
-            actions.add(new ActionStatic(actionValue, ActionTypeStatic.randomAction()));
+        //performing random actions
+        int randomCyclesQuantity = (int) (Math.random() * 10 + 1);
+        int randomActionType;
+        for (int i = 0; i < randomCyclesQuantity; i++) {
+            randomActionType = (int) (Math.random() * 2);
+            switch (randomActionType)
+            {
+                case 0:
+                    performStaticActions();
+                    break;
+                case 1:
+                    performPersonActions();
+                    break;
+                default: break;
+            }
+            map.printMap();
         }
-
-        //random performing static actions
-        //performStaticActions();
-        performPersonActions();
     }
 }
