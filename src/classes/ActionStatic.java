@@ -1,14 +1,22 @@
 package classes;
 
 import classes.abstracts.Action;
-import classes.enums.ActionType;
+import classes.enums.ActionTypeStatic;
 
 public class ActionStatic extends Action {
 
-    ActionType type;
+    ActionTypeStatic type;
 
-    public ActionStatic(int value, ActionType type) {
+    public ActionStatic(int value, ActionTypeStatic type) {
         super(value);
         this.type = type;
+    }
+
+    public ActionTypeStatic getType(){
+        return this.type;
+    }
+
+    public String perform(){
+        return this.type.outStringAction();
     }
 }

@@ -19,34 +19,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="Working commit 1.0">
-      <change afterPath="$PROJECT_DIR$/src/classes/ActionPerson.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/ActionStatic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/ActionThing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/Model.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/abstracts/Action.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypePerson.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypeThing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/enums/Names.java" afterDir="false" />
+    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="Added new classes, made random model">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Action.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Container.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Container.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Emotion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Emotion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Map$Point.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Map$Point.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Map.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Action.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/enums/ActionType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/enums/ActionType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/enums/EmotionType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/enums/EmotionType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/interfaces/Alive.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/interfaces/Alive.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/enums/ActionType.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/laba3/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Action.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Emotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Emotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/ActionPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/ActionPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/ActionStatic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/ActionStatic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/ActionThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/ActionThing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/enums/EmotionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/EmotionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/interfaces/Alive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/interfaces/Alive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypeStatic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionTypePerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypePerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionTypeThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypeThing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,13 +116,14 @@
     <MESSAGE value="Finished map" />
     <MESSAGE value="Working commit 1.0" />
     <MESSAGE value="Version 1.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.2" />
+    <MESSAGE value="Added new classes, made random model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new classes, made random model" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1606199808645">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1606203019210">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1606199808645" />
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1606203019210" />
     <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1605909890954">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -149,22 +136,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="460" y="69" key="Github.UntrackedFilesDialog/0.0.1366.728@0.0.1366.728" timestamp="1605910116893" />
-    <state width="1323" height="519" key="GridCell.Tab.0.bottom" timestamp="1606201726787">
+    <state width="1323" height="519" key="GridCell.Tab.0.bottom" timestamp="1606204925010">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="519" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606201726787" />
-    <state width="1323" height="519" key="GridCell.Tab.0.center" timestamp="1606201726787">
+    <state width="1323" height="519" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606204925010" />
+    <state width="1323" height="519" key="GridCell.Tab.0.center" timestamp="1606204925010">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="519" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606201726787" />
-    <state width="1323" height="519" key="GridCell.Tab.0.left" timestamp="1606201726787">
+    <state width="1323" height="519" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606204925010" />
+    <state width="1323" height="519" key="GridCell.Tab.0.left" timestamp="1606204925010">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="519" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606201726787" />
-    <state width="1323" height="519" key="GridCell.Tab.0.right" timestamp="1606201726787">
+    <state width="1323" height="519" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606204925010" />
+    <state width="1323" height="519" key="GridCell.Tab.0.right" timestamp="1606204925010">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="519" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606201726787" />
+    <state width="1323" height="519" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606204925010" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1606061863669">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -185,10 +172,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1606054003357" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606122112357">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606202880603">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1606122112357" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1606202880603" />
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605909739673">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

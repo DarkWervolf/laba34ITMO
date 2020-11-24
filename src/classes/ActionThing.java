@@ -14,7 +14,7 @@ public class ActionThing extends Action {
         this.type = type;
     }
 
-    public void perform(){
-
+    public String perform(Thing thing){
+        return (this.type.outStringAction() + " " + thing.getTitle());
     }
 }

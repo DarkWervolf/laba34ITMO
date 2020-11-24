@@ -2,8 +2,6 @@ package classes;
 
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
-import classes.enums.ActionType;
-import classes.enums.ActionTypePerson;
 import classes.enums.EmotionType;
 import classes.interfaces.Alive;
 import classes.interfaces.Movable;
@@ -12,12 +10,16 @@ import java.util.Vector;
 public class Person implements Movable, Alive {
 
     private String name;
-    private Vector<Action> actions;
+    private Vector<ActionStatic> actionsStatic;
+    private Vector<ActionPerson> actionsPerson;
+    private Vector<ActionThing> actionsThing;
     private Emotion currentEmotion;
 
     public Person(String name) {
         this.name = name;
-        actions = new Vector<>();
+        actionsStatic = new Vector<>();
+        actionsPerson = new Vector<>();
+        actionsThing = new Vector<>();
         currentEmotion = new Emotion();
         this.shoutIwasBorn();
         this.randomEmotion();
@@ -45,15 +47,38 @@ public class Person implements Movable, Alive {
     }
 
     public void addAction(Action action) {
-        this.actions.add(action);
+        if (action.getClass() == ActionStatic.class){
+            actionsStatic.add((ActionStatic) action);
+        } else if (action.getClass() == ActionPerson.class){
+            actionsPerson.add((ActionPerson) action);
+        }
+        else {
+            actionsThing.add((ActionThing) action);
+        }
     }
 
-    public Action getAction(int index) {
-        return actions.elementAt(index);
+    public ActionStatic getActionStatic(int index) {
+        return actionsStatic.elementAt(index);
     }
 
-    public int getActionsSize(){
-        return actions.size();
+    public ActionPerson getActionPerson(int index){
+        return actionsPerson.elementAt(index);
+    }
+
+    public ActionThing getActionThing(int index){
+        return actionsThing.elementAt(index);
+    }
+
+    public int getActionsStaticSize(){
+        return actionsStatic.size();
+    }
+
+    public int getActionsPersonSize(){
+        return actionsPerson.size();
+    }
+
+    public int getActionsThingSize(){
+        return actionsThing.size();
     }
 
     public void setEmotion(Emotion emotion) {
@@ -65,7 +90,7 @@ public class Person implements Movable, Alive {
         System.out.println(text);
     }
 
-    public void performAction(Action action){
+    public void performAction(ActionStatic action){
         System.out.println(this.getName() + action.perform());
         if (action.getEmotion() != null){
             this.setEmotion(action.getEmotion());
@@ -75,35 +100,31 @@ public class Person implements Movable, Alive {
         }
     }
 
-    public void performAction(Action action, Person person){
+    public void performAction(ActionPerson action, Person victim){
         switch (action.getType())
         {
             case EATING:
-                System.out.println(this.getName() + ActionTypePerson.EATING.outStringAction() + person.getName());
-                person.setEmotion(new Emotion(action.getValue(), EmotionType.ANGRY));
-                person.goNuts();
+                System.out.println(this.getName() + action.perform(victim));
+                victim.setEmotion(new Emotion(action.getValue(), EmotionType.ANGRY));
+                victim.goNuts();
                 break;
             case KICKING:
-                System.out.println(this.getName() + ActionTypePerson.KICKING.outStringAction() + person.getName());
+                System.out.println(this.getName() + action.perform(victim));
                 if (action.getValue() > 5){
-                    person.setEmotion(new Emotion(action.getValue(), EmotionType.SAD));
+                    victim.setEmotion(new Emotion(action.getValue(), EmotionType.SAD));
                 } else{
-                    person.setEmotion(new Emotion(action.getValue(), EmotionType.ANGRY));
+                    victim.setEmotion(new Emotion(action.getValue(), EmotionType.ANGRY));
                 }
-                break;
-            case THROWING:
-                System.out.println(this.getName() + ActionType.THROWING.outStringAction() + person.getName());
-                person.setEmotion(new Emotion(action.getValue(), EmotionType.ANGRY));
-                person.goNuts();
                 break;
             default:
                 System.out.println(this.getName() + action.getType().outStringAction());
-                System.out.println(person.getName() + ": what the hell just happend?");
+                victim.randomEmotion();
+                System.out.println(victim.getName() + ": what the hell just happend?");
         }
     }
 
     public void performAction(Action action, Thing thing){
-
+        //in development
     }
 
     protected boolean isPrisoner(Container container){

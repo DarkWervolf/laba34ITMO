@@ -11,4 +11,12 @@ public class ActionPerson extends Action {
         super(value);
         this.type = type;
     }
+
+    public ActionTypePerson getType() {
+        return type;
+    }
+
+    public String perform(Person victim){
+        return (this.type.outStringAction() + " " + victim.getName());
+    }
 }

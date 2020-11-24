@@ -2,7 +2,7 @@ package classes;
 
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
-import classes.enums.ActionType;
+import classes.enums.ActionTypeStatic;
 import classes.enums.Names;
 
 import java.util.Vector;
@@ -14,6 +14,27 @@ public class Model {
     private Vector<Action> actions;
 
     public Model() {
+    }
+
+    protected void performStaticActions(int NPCquantity){
+        int randomPerformActionCycles = (int) (Math.random() * 20);
+        int randomNPC;
+        int randomNPCAction;
+        for (int i = 0; i < randomPerformActionCycles; i++) {
+            //random static action performance
+            randomNPC = (int) (Math.random() * (NPCquantity));
+            if (this.NPCs.elementAt(randomNPC).getActionsStaticSize() > 0) {
+                randomNPCAction = (int) (Math.random() * (this.NPCs.elementAt(randomNPC).getActionsStaticSize() - 1));
+                this.NPCs.elementAt(randomNPC).performAction(this.NPCs.elementAt(randomNPC).getActionStatic(randomNPCAction));
+            }
+            System.out.println();
+            //making pause between actions
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void runRandom(){
@@ -50,7 +71,7 @@ public class Model {
         int actionValue;
         for (int i = 0; i < anctionsQuantity; i++) {
             actionValue = (int) (Math.random() * 10);
-            actions.add(new Action(actionValue, ActionType.randomAction()));
+            actions.add(new ActionStatic(actionValue, ActionTypeStatic.randomAction()));
         }
 
         //adding actions to NPCs
@@ -65,16 +86,9 @@ public class Model {
             }
         }
 
-        //random performing actions
-        int randomPerformActionCycles = (int) (Math.random() * 20);
-        int randomNPC;
-        int randomNPCAction;
-        for (int i = 0; i < randomPerformActionCycles; i++) {
-            randomNPC = (int) (Math.random() * (NPCquantity));
-            if (NPCs.elementAt(randomNPC).getActionsSize() > 0) {
-                randomNPCAction = (int) (Math.random() * (NPCs.elementAt(randomNPC).getActionsSize() - 1));
-                NPCs.elementAt(randomNPC).performAction(NPCs.elementAt(randomNPC).getAction(randomNPCAction));
-            }
-        }
+        //random performing static actions
+        performStaticActions(NPCquantity);
+
+
     }
 }

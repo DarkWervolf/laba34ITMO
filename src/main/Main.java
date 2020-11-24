@@ -1,10 +1,6 @@
 package main;
 
 import classes.*;
-import classes.abstracts.*;
-import classes.enums.ActionType;
-import classes.enums.EmotionType;
-import classes.enums.Names;
 
 public class Main {
 
@@ -26,7 +22,7 @@ public class Main {
 
         Container meshok = new Container("Meshok", 10);
 
-        Action slightKick = new Action(3, ActionType.KICKING);
+        Action slightKick = new Action(3, ActionTypeStatic.KICKING);
         vintik.performAction(slightKick, donut);
         meshok.put(donut);
 
