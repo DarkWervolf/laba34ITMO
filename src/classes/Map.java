@@ -84,15 +84,18 @@ public class Map {
         All the points are located in First Quarter of Squared system of coordinates.
      */
 
-    public void setPosition(Person person, int x, int y){
+    public boolean setPosition(Person person, int x, int y){
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");
+            return false;
         }else {
             if (!pointIsEmpty(person, x, y)) {
                 System.out.println("This point is already taken, please, choose another");
+                return false;
             } else {
                 points[x][y].occupy(person);
                 System.out.println(person.getName() + " is now located in point " + x + " " + y);
+                return true;
             }
         }
     }
@@ -196,7 +199,7 @@ public class Map {
         }
     }
 
-    protected boolean pointIsEmpty(Person person, int x, int y){
+    public boolean pointIsEmpty(Person person, int x, int y){
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");
             return false;
@@ -207,7 +210,7 @@ public class Map {
         }
     }
 
-    protected boolean pointIsEmpty(Thing thing, int x, int y){
+    public boolean pointIsEmpty(Thing thing, int x, int y){
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");
             return false;

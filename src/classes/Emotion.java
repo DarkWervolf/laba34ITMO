@@ -7,6 +7,13 @@ public class Emotion {
     private int value;
     private EmotionType type;
 
+    public Emotion(int value, EmotionType type) {
+        this.value = value;
+        this.type = type;
+    }
+
+    protected Emotion() {}
+
     public String getTitle() {
         return title;
     }
@@ -31,7 +38,15 @@ public class Emotion {
         this.type = type;
     }
 
-    public void printReport(){
-
+    public String express(){
+        int intensity = this.getValue();
+        if (intensity > 7) {
+            return this.type.getIntense();
+        }else if (intensity > 4){
+            return this.type.getMedium();
+        }
+        else {
+            return this.type.getLow();
+        }
     }
 }

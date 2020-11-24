@@ -1,6 +1,6 @@
 package classes.interfaces;
 
 public interface Alive {
-    void shoutImAlive();
+    void shoutIwasBorn();
     void goNuts();
 }
