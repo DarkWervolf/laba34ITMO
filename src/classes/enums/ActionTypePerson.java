@@ -6,16 +6,15 @@ import java.util.List;
 import java.util.Random;
 
 public enum ActionTypePerson {
-    HANGING (" is hanging "),
-    EATING (" is eating "),
+    HANGING (" is hanging"),
+    EATING (" is eating"),
     BEATING(" is beating"),
     HUGGING (" is hugging"),
-    KICKING (" is kicking ");
+    KICKING (" is kicking");
 
     private final String actionOutput;
-    private static final List<ActionTypePerson> VALUES =
-            Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int SIZE = VALUES.size();
+    private static final ActionTypePerson[] VALUES = values();
+    private static final int SIZE = VALUES.length;
     private static final Random RANDOM = new Random();
 
     ActionTypePerson(String actionOutput){
@@ -27,6 +26,6 @@ public enum ActionTypePerson {
     }
 
     public static ActionTypePerson randomAction()  {
-        return VALUES.get(RANDOM.nextInt(SIZE));
+        return VALUES[RANDOM.nextInt(SIZE)];
     }
 }

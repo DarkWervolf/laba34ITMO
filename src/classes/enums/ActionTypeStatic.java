@@ -9,14 +9,13 @@ public enum ActionTypeStatic {
 
     CRYING (" is crying"),
     SMILING (" is smiling"),
-    EATING (" is eating "),
+    EATING (" is eating"),
     WHISTLING (" is whistling");
 
 
     private final String actionOutput;
-    private static final List<ActionTypeStatic> VALUES =
-            Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int SIZE = VALUES.size();
+    private static final ActionTypeStatic[] VALUES = values();
+    private static final int SIZE = VALUES.length;
     private static final Random RANDOM = new Random();
 
     ActionTypeStatic(String actionOutput){
@@ -28,6 +27,6 @@ public enum ActionTypeStatic {
     }
 
     public static ActionTypeStatic randomAction()  {
-        return VALUES.get(RANDOM.nextInt(SIZE));
+        return VALUES[RANDOM.nextInt(SIZE)];
     }
 }

@@ -14,9 +14,8 @@ public enum ActionTypeThing {
     GETTING (" is getting ");
 
     private final String actionOutput;
-    private static final List<ActionTypeThing> VALUES =
-            Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int SIZE = VALUES.size();
+    private static final ActionTypeThing[] VALUES = values();
+    private static final int SIZE = VALUES.length;
     private static final Random RANDOM = new Random();
 
     ActionTypeThing(String actionOutput){
@@ -28,6 +27,6 @@ public enum ActionTypeThing {
     }
 
     public static ActionTypeThing randomAction()  {
-        return VALUES.get(RANDOM.nextInt(SIZE));
+        return VALUES[RANDOM.nextInt(SIZE)];
     }
 }

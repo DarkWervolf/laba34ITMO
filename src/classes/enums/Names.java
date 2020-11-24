@@ -20,12 +20,11 @@ public enum Names {
     Zabini,
     Kevin;
 
-    private static final List<Names> VALUES =
-            Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int SIZE = VALUES.size();
+    private static final Names[] VALUES = values();
+    private static final int SIZE = VALUES.length;
     private static final Random RANDOM = new Random();
 
     public static String randomName()  {
-        return VALUES.get(RANDOM.nextInt(SIZE)).toString();
+        return VALUES[RANDOM.nextInt(SIZE)].toString();
     }
 }

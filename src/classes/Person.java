@@ -116,6 +116,6 @@ public class Person implements Movable, Alive {
 
     @Override
     public void goNuts() {
-        System.out.println("Братцы, братцы...");
+        System.out.println(this.getName() + ": Братцы, братцы...");
     }
 }

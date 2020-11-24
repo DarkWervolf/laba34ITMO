@@ -15,67 +15,62 @@ public class Model {
     public Model() {
     }
 
-    protected void performStaticActions() {
-        int randomPerformActionCycles = (int) (Math.random() * 20);
+    protected void performStaticAction() {
         int randomNPC;
         int randomValue;
-        for (int i = 0; i < randomPerformActionCycles; i++) {
-            //random static action performance
-            randomNPC = (int) (Math.random() * (NPCs.size()));
-            randomValue = (int) (Math.random() * ActionTypeStatic.values().length);
-            this.NPCs.elementAt(randomNPC).performAction(new ActionStatic(randomValue, ActionTypeStatic.randomAction()));
-            System.out.println();
+        //random static action performance
+        randomNPC = (int) (Math.random() * (NPCs.size()));
+        randomValue = (int) (Math.random() * ActionTypeStatic.values().length);
+        this.NPCs.elementAt(randomNPC).performAction(new ActionStatic(randomValue, ActionTypeStatic.randomAction()));
+        System.out.println();
 
-            //making pause between actions
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        //making pause between actions
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    protected void performPersonActions(){
-        int randomPerformActionCycles = (int) (Math.random() * 20);
+    protected void performPersonAction(){
         int randomNPC;
         int randomVictim;
         int randomValue;
-        for (int i = 0; i < randomPerformActionCycles; i++) {
-            //getting indexes of NPC and its victim
+        //getting indexes of NPC and its victim
+        randomNPC = (int) (Math.random() * (NPCs.size()));
+        randomVictim = (int) (Math.random() * (NPCs.size()));
+        while (randomNPC == randomVictim){
             randomNPC = (int) (Math.random() * (NPCs.size()));
             randomVictim = (int) (Math.random() * (NPCs.size()));
-            while (randomNPC == randomVictim){
-                randomNPC = (int) (Math.random() * (NPCs.size()));
-                randomVictim = (int) (Math.random() * (NPCs.size()));
-            }
+        }
 
-            //introducing variables
-            int xNPC, yNPC, xVictim, yVictim;
-            xNPC = map.getPosition(NPCs.elementAt(randomNPC))[0]; //getting coordinates of NPC
-            yNPC = map.getPosition(NPCs.elementAt(randomNPC))[1];
-            xVictim = map.getPosition(NPCs.elementAt(randomVictim))[0]; //getting coordinates of victim
-            yVictim = map.getPosition(NPCs.elementAt(randomVictim))[1];
-            //checking if victim is near and moving NPC if necessary
-            if (!(Math.abs(xNPC - xVictim) < 2 && Math.abs(xNPC-yVictim)<2)){
-                int newX = xNPC; //making new coordinates
-                int newY = yNPC;
-                while (!(Math.abs(newX - xVictim) < 2 && Math.abs(newY-yVictim)<2 && map.pointIsEmptyPerson(newX, newY))){ //moving to victim, if not near
-                    newX = (int) (Math.random() * (map.getSize()-1) + (xVictim-1));
-                    newY = (int) (Math.random() * (map.getSize()-1) + (yVictim-1));
-                }
-                NPCs.elementAt(randomNPC).move(this.map, newX, newY); //moving NPC
+        //introducing variables
+        int xNPC, yNPC, xVictim, yVictim;
+        xNPC = map.getPosition(NPCs.elementAt(randomNPC))[0]; //getting coordinates of NPC
+        yNPC = map.getPosition(NPCs.elementAt(randomNPC))[1];
+        xVictim = map.getPosition(NPCs.elementAt(randomVictim))[0]; //getting coordinates of victim
+        yVictim = map.getPosition(NPCs.elementAt(randomVictim))[1];
+        //checking if victim is near and moving NPC if necessary
+        if (!(Math.abs(xNPC - xVictim) < 2 && Math.abs(xNPC-yVictim)<2)){
+            int newX = xNPC; //making new coordinates
+            int newY = yNPC;
+            while (!(Math.abs(newX - xVictim) < 2 && Math.abs(newY-yVictim)<2 && map.pointIsEmptyPerson(newX, newY))){ //moving to victim, if not near
+                newX = (int) (Math.random() * (map.getSize()-1) + (xVictim-1));
+                newY = (int) (Math.random() * (map.getSize()-1) + (yVictim-1));
             }
-            //performing actions
-            randomValue = (int) (Math.random() * ActionTypePerson.values().length);
-            this.NPCs.elementAt(randomNPC).performAction(new ActionPerson(randomValue, ActionTypePerson.randomAction()), this.NPCs.elementAt(randomVictim));
-            System.out.println();
+            NPCs.elementAt(randomNPC).move(this.map, newX, newY); //moving NPC
+            this.map.printMap();
+        }
+        //performing actions
+        randomValue = (int) (Math.random() * ActionTypePerson.values().length);
+        this.NPCs.elementAt(randomNPC).performAction(new ActionPerson(randomValue, ActionTypePerson.randomAction()), this.NPCs.elementAt(randomVictim));
+        System.out.println();
 
-            //making pause between actions
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        //making pause between actions
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -105,24 +100,26 @@ public class Model {
 
             map.setPosition(NPCs.get(i), x, y);
         }
-        map.printMap();
+
+        map.printMap(); //printing first state of map
 
         //performing random actions
-        int randomCyclesQuantity = (int) (Math.random() * 10 + 1);
+        int randomCyclesQuantity = (int) (Math.random() * 30 + 1);
         int randomActionType;
         for (int i = 0; i < randomCyclesQuantity; i++) {
             randomActionType = (int) (Math.random() * 2);
             switch (randomActionType)
             {
                 case 0:
-                    performStaticActions();
+                    performStaticAction();
                     break;
                 case 1:
-                    performPersonActions();
+                    performPersonAction();
                     break;
                 default: break;
             }
-            map.printMap();
         }
+
+        map.printMap(); //printing last state of map
     }
 }
