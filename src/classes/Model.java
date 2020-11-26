@@ -1,10 +1,11 @@
 package classes;
 
+import classes.actions.ActionPerson;
+import classes.actions.ActionStatic;
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
 import classes.enums.*;
 
-import java.util.Random;
 import java.util.Vector;
 
 public class Model {
@@ -15,6 +16,13 @@ public class Model {
 
     public Model() {
     }
+
+    /*
+    Scheme:
+        1. Running with parameters or full random
+        2. Action
+        3. Random end: duel or happy end
+     */
 
     protected void performStaticAction() {
         int randomNPC;
@@ -69,7 +77,7 @@ public class Model {
 
     protected void duel(){
         //choosing who's attaking
-        int attacker = (int) Math.random();
+        int attacker = (int) (Math.random()*1.1);
         int defender;
         if (attacker == 1){
             defender = 0;
@@ -126,6 +134,13 @@ public class Model {
         System.out.println("Duel is over. The winner is " + NPCs.elementAt(0).getName());
     }
 
+    protected void happyEnd(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(NPCs.elementAt(0).getName()).append(" and ").append(NPCs.elementAt(1).getName()).append(" decided to marry and live a long happy life!");
+        System.out.println(sb.toString());
+        System.out.println("End of story!");
+    }
+
     protected void action(){
         //putting NPCs on map
         int x;
@@ -165,7 +180,17 @@ public class Model {
 
         map.printMap(); //printing last state of map
 
-        duel();
+        //ending
+        int randomEnd = (int) (Math.random()*1.1);
+        switch (randomEnd)
+        {
+            case 0:
+                duel();
+                break;
+            case 1:
+                happyEnd();
+                break;
+        }
     }
 
     public void runWithParameters(int sizeOfMap, int NPCquantity){

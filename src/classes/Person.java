@@ -1,11 +1,14 @@
 package classes;
 
+import classes.actions.ActionPerson;
+import classes.actions.ActionStatic;
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
-import classes.enums.ActionTypeStatic;
 import classes.enums.EmotionType;
 import classes.interfaces.Alive;
 import classes.interfaces.Movable;
+import classes.things.Container;
+
 import java.util.Vector;
 
 public class Person implements Movable, Alive {
@@ -14,6 +17,7 @@ public class Person implements Movable, Alive {
     private int HP;
     private int maxHP;
     private Emotion currentEmotion;
+    private Vector<Thing> inventory;
 
     public Person(String name, int HP) {
         this.name = name;
@@ -22,9 +26,10 @@ public class Person implements Movable, Alive {
         currentEmotion = new Emotion();
         this.shoutIwasBorn();
         this.randomEmotion();
+        this.inventory = new Vector<>();
     }
 
-    protected void randomEmotion(){
+    public void randomEmotion(){
         int value = (int) (Math.random() * 10);
         int type = (int) (Math.random() * 3);
 
@@ -59,24 +64,28 @@ public class Person implements Movable, Alive {
         } else sign = ' ';
 
         //making the change
+        boolean diedFlag = false;
         if (change+this.HP > maxHP){
             change = maxHP-this.HP;
             this.HP = this.maxHP;
         } else if (Math.abs(change) >= this.HP && (int) Math.signum(change) < 0){
             this.HP = 0;
             System.out.println(this.getName() + " died.");
+            diedFlag = true;
         } else {
             this.HP += change;
         }
 
-        //printing the change of HP
-        sb.append(this.getName()).append(": ").append(sign).append(Math.abs(change)).append(" HP");
-        System.out.println(sb.toString());
+        if (!diedFlag) {
+            //printing the change of HP
+            sb.append(this.getName()).append(": ").append(sign).append(Math.abs(change)).append(" HP");
+            System.out.println(sb.toString());
 
-        //printing current HP
-        sb.delete(0, sb.length());
-        sb.append("Current HP of ").append(this.getName()).append(" is ").append(this.HP);
-        System.out.println(sb.toString());
+            //printing current HP
+            sb.delete(0, sb.length());
+            sb.append("Current HP of ").append(this.getName()).append(" is ").append(this.HP);
+            System.out.println(sb.toString());
+        }
     }
 
     public void setEmotion(Emotion emotion) {
@@ -84,11 +93,9 @@ public class Person implements Movable, Alive {
         System.out.println(this.getName() + ": " + this.currentEmotion.express());
     }
 
-
     public void say(String text){
         System.out.println(this.getName() + ": " + text);
     }
-
 
     public void performAction(ActionStatic action){
         System.out.println(this.getName() + action.perform());
@@ -101,52 +108,12 @@ public class Person implements Movable, Alive {
     }
 
     public void performAction(ActionPerson action, Person victim){
-        switch (action.getType())
-        {
-            case EATING:
-                System.out.println(this.getName() + action.perform(victim));
-                victim.setEmotion(new Emotion(action.getValue(), EmotionType.ANGRY));
-                victim.goNuts();
-                victim.changeHP(-victim.getHP());
-                break;
-            case BEATING:
-            case KICKING:
-                System.out.println(this.getName() + action.perform(victim));
-                victim.changeHP(-action.getValue());
-                if (action.getValue() == 0){
-                    System.out.println(this.getName() + " missed.");
-                    victim.performAction(new ActionStatic(0, ActionTypeStatic.LAUTHING));
-                    victim.say("LMAO, you're such a well-aimed fighter!");
-                }
-                if (victim.getHP() > 0 ) {
-                    if (action.getValue() > 60) {
-                        victim.setEmotion(new Emotion(action.getValue(), EmotionType.SAD));
-                    } else {
-                        victim.setEmotion(new Emotion(action.getValue(), EmotionType.ANGRY));
-                    }
-                }
-                break;
-            case KISSING:
-            case HUGGING:
-                System.out.println(this.getName() + action.perform(victim));
-                victim.changeHP(action.getValue());
-                if (action.getValue() > 60){
-                    victim.setEmotion(new Emotion(action.getValue(), EmotionType.HAPPY));
-                } else{
-                    victim.setEmotion(new Emotion(action.getValue(), EmotionType.NEUTRAL));
-                }
-                break;
-            default:
-                System.out.println(this.getName() + action.perform(victim));
-                victim.randomEmotion();
-                System.out.println(victim.getName() + ": what the hell just happend?");
-        }
+        action.perform(this, victim);
     }
 
     public void performAction(Action action, Thing thing){
         //in development
     }
-
 
     protected boolean isPrisoner(Container container){
         if (container.contains(this)){
@@ -155,6 +122,10 @@ public class Person implements Movable, Alive {
         else return false;
     }
 
+    @Override
+    public void runAwayFrom(Map map, Person bully) {
+        map.runAwayFrom(this, bully);
+    }
 
     @Override
     public void move(Map map, int x, int y) {

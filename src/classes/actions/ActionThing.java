@@ -1,4 +1,4 @@
-package classes;
+package classes.actions;
 
 import classes.abstracts.Action;
 import classes.abstracts.Thing;

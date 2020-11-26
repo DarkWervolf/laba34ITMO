@@ -227,6 +227,23 @@ public class Map {
         }
     }
 
+    public void runAwayFrom(Person person, Person bully){
+        int xPerson, yPerson, xBully, yBully;
+        xPerson = (getPosition(person))[0]; //getting coordinates of NPC
+        yPerson = (getPosition(person))[1];
+        xBully = (getPosition(bully))[0]; //getting coordinates of bully
+        yBully = (getPosition(bully))[1];
+
+        int newX = xPerson; //making new coordinates
+        int newY = yPerson;
+        while (!(Math.abs(newX - xBully) >= 2 && Math.abs(newY-yBully) >= 2 && pointIsEmptyPerson(newX, newY))){ //moving away
+            newX = (int) (Math.random() * (getSize()-1));
+            newY = (int) (Math.random() * (getSize()-1));
+        }
+        move(person, newX, newY); //moving NPC
+        printMap();
+    }
+
     public boolean pointIsEmptyPerson(int x, int y){
         if (!ifCoordinatesAreCorrectCheck(x, y)){
             System.out.println("Coordinates are not correct, please, input different");

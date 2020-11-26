@@ -2,10 +2,11 @@ package classes.abstracts;
 
 public abstract class Thing {
     private String title;
-    private boolean isDestroyed;
+    private ThingType type;
 
-    public Thing(String title) {
+    public Thing(String title, ThingType type) {
         this.title = title;
+        this.type = type;
     }
 
     public String getTitle() {
@@ -15,8 +16,4 @@ public abstract class Thing {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    public void destroy(){}
-
-    public void repair(){}
 }

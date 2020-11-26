@@ -19,14 +19,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="Working commit 1.6&#10;Little changes">
+    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="Working commit 1.7&#10;added running with parameters&#10;added dueling&#10;added HP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/ActionPerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/ActionPerson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Map.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Person$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/enums/ActionTypePerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/enums/ActionTypePerson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/enums/ActionTypeStatic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/enums/ActionTypeStatic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/enums/EmotionType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/enums/EmotionType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/laba3/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/ActionPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/ActionPerson.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionTypePerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypePerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionTypeStatic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypeStatic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/enums/EmotionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/EmotionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/interfaces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/interfaces/Movable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +66,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunManager" selected="Application.Main (1)">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -115,17 +124,18 @@
     <MESSAGE value="Working commit 1.4&#10;Moving towards victim is working" />
     <MESSAGE value="Working commit 1.5&#10;ALmost done" />
     <MESSAGE value="Working commit 1.6&#10;Little changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working commit 1.6&#10;Little changes" />
+    <MESSAGE value="Working commit 1.7&#10;added running with parameters&#10;added dueling&#10;added HP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working commit 1.7&#10;added running with parameters&#10;added dueling&#10;added HP" />
   </component>
   <component name="WindowStateProjectService">
     <state x="163" y="0" key="#Project_Structure" timestamp="1606209895786">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="163" y="0" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1606209895786" />
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1606418278020">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1606420692590">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1606418278020" />
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1606420692590" />
     <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1605909890954">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -138,22 +148,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="460" y="69" key="Github.UntrackedFilesDialog/0.0.1366.728@0.0.1366.728" timestamp="1605910116893" />
-    <state width="1323" height="331" key="GridCell.Tab.0.bottom" timestamp="1606418576775">
+    <state width="1323" height="331" key="GridCell.Tab.0.bottom" timestamp="1606421330295">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="331" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606418576775" />
-    <state width="1323" height="331" key="GridCell.Tab.0.center" timestamp="1606418576775">
+    <state width="1323" height="331" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606421330295" />
+    <state width="1323" height="331" key="GridCell.Tab.0.center" timestamp="1606421330295">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="331" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606418576775" />
-    <state width="1323" height="331" key="GridCell.Tab.0.left" timestamp="1606418576774">
+    <state width="1323" height="331" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606421330295" />
+    <state width="1323" height="331" key="GridCell.Tab.0.left" timestamp="1606421330295">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="331" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606418576774" />
-    <state width="1323" height="331" key="GridCell.Tab.0.right" timestamp="1606418576775">
+    <state width="1323" height="331" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606421330295" />
+    <state width="1323" height="331" key="GridCell.Tab.0.right" timestamp="1606421330295">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="331" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606418576775" />
+    <state width="1323" height="331" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606421330295" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1606415531798">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -174,10 +184,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1606054003357" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606211803672">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606418921364">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1606211803672" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1606418921364" />
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605909739673">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
