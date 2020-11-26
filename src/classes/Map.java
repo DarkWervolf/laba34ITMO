@@ -117,6 +117,11 @@ public class Map {
         }
     }
 
+    public void deleteElement(Person person){
+        int[] coordinates = getPosition(person);
+        this.points[coordinates[0]][coordinates[1]].leave();
+    }
+
     protected int[] getPosition(Person person){
         int[] position = new int[2]; //x, y coordinates of a person
         boolean flag_posFound = false; //checking, if person is found
@@ -200,6 +205,25 @@ public class Map {
                 points[x][y].put(thing);
                 System.out.println(thing.getTitle() + " was moved to point " + x + " " + y);
             }
+        }
+    }
+
+    public void moveToPerson(Person person, Person victim){
+        int xPerson, yPerson, xVictim, yVictim;
+        xPerson = (getPosition(person))[0]; //getting coordinates of NPC
+        yPerson = (getPosition(person))[1];
+        xVictim = (getPosition(victim))[0]; //getting coordinates of victim
+        yVictim = (getPosition(victim))[1];
+        //checking if victim is near and moving NPC if necessary
+        if (!(Math.abs(xPerson - xVictim) < 2 && Math.abs(xPerson-yVictim)<2)){
+            int newX = xPerson; //making new coordinates
+            int newY = yPerson;
+            while (!(Math.abs(newX - xVictim) < 2 && Math.abs(newY-yVictim)<2 && pointIsEmptyPerson(newX, newY))){ //moving to victim, if not near
+                newX = (int) (Math.random() * (getSize()-1) + (xVictim-1));
+                newY = (int) (Math.random() * (getSize()-1) + (yVictim-1));
+            }
+            move(person, newX, newY); //moving NPC
+            printMap();
         }
     }
 

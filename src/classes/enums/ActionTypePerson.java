@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 public enum ActionTypePerson {
-    HANGING (" is hanging"),
+    KISSING (" is kissing"),
+    WATCHING (" is attentively watching"),
+    TOUCHING (" is touching"),
     EATING (" is eating"),
     BEATING(" is beating"),
     HUGGING (" is hugging"),

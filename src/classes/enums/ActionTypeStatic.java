@@ -10,7 +10,8 @@ public enum ActionTypeStatic {
     CRYING (" is crying"),
     SMILING (" is smiling"),
     EATING (" is eating"),
-    WHISTLING (" is whistling");
+    WHISTLING (" is whistling"),
+    LAUTHING (" is laughing");
 
 
     private final String actionOutput;

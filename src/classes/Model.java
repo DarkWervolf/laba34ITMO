@@ -4,6 +4,7 @@ import classes.abstracts.Action;
 import classes.abstracts.Thing;
 import classes.enums.*;
 
+import java.util.Random;
 import java.util.Vector;
 
 public class Model {
@@ -44,27 +45,19 @@ public class Model {
             randomVictim = (int) (Math.random() * (NPCs.size()));
         }
 
-        //introducing variables
-        int xNPC, yNPC, xVictim, yVictim;
-        xNPC = map.getPosition(NPCs.elementAt(randomNPC))[0]; //getting coordinates of NPC
-        yNPC = map.getPosition(NPCs.elementAt(randomNPC))[1];
-        xVictim = map.getPosition(NPCs.elementAt(randomVictim))[0]; //getting coordinates of victim
-        yVictim = map.getPosition(NPCs.elementAt(randomVictim))[1];
-        //checking if victim is near and moving NPC if necessary
-        if (!(Math.abs(xNPC - xVictim) < 2 && Math.abs(xNPC-yVictim)<2)){
-            int newX = xNPC; //making new coordinates
-            int newY = yNPC;
-            while (!(Math.abs(newX - xVictim) < 2 && Math.abs(newY-yVictim)<2 && map.pointIsEmptyPerson(newX, newY))){ //moving to victim, if not near
-                newX = (int) (Math.random() * (map.getSize()-1) + (xVictim-1));
-                newY = (int) (Math.random() * (map.getSize()-1) + (yVictim-1));
-            }
-            NPCs.elementAt(randomNPC).move(this.map, newX, newY); //moving NPC
-            this.map.printMap();
-        }
+        //moving to victim
+        this.map.moveToPerson(NPCs.elementAt(randomNPC), NPCs.elementAt(randomVictim));
+
         //performing actions
-        randomValue = (int) (Math.random() * ActionTypePerson.values().length);
+        randomValue = (int) (Math.random() * 100);
         this.NPCs.elementAt(randomNPC).performAction(new ActionPerson(randomValue, ActionTypePerson.randomAction()), this.NPCs.elementAt(randomVictim));
         System.out.println();
+
+        //removing victim if dead
+        if (NPCs.elementAt(randomVictim).getHP() == 0){
+            this.map.deleteElement(NPCs.elementAt(randomVictim));
+            NPCs.remove(randomVictim);
+        }
 
         //making pause between actions
         try {
@@ -74,22 +67,70 @@ public class Model {
         }
     }
 
-    public void runRandom(){
-        //creating map
-        int mapSize = (int) (Math.random() * 10 + 4);
-        map = new Map(mapSize);
+    protected void duel(){
+        //choosing who's attaking
+        int attacker = (int) Math.random();
+        int defender;
+        if (attacker == 1){
+            defender = 0;
+        } else defender = 1;
+        this.map.moveToPerson(NPCs.elementAt(attacker), NPCs.elementAt(defender));
 
-        //creating NPCs
-        int NPCquantity = (int) (Math.random() * (map.getSize()-1) + 2);
-        NPCs = new Vector<>();
-        for (int i = 0; i < NPCquantity; i++) {
-            NPCs.add(new Person(Names.randomName()));
+        //printing some text
+        StringBuilder sb = new StringBuilder();
+        sb.append("Fighters are: ").append(NPCs.elementAt(attacker).getName()).append(": ").append(NPCs.elementAt(attacker).getHP()).append(" and ").append(NPCs.elementAt(defender).getName()).append(": ").append(NPCs.elementAt(defender).getHP());
+        System.out.println(sb.toString());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Let the Duel start!");
+
+        //dueling
+        int attackType, value, temp;
+        while (NPCs.elementAt(attacker).getHP() > 0 && NPCs.elementAt(defender).getHP() > 0){
+            //performing attack
+            attackType = (int) (Math.random());
+            value = (int) (Math.random() * 100);
+            switch (attackType)
+            {
+                case 0:
+                    NPCs.elementAt(attacker).performAction(new ActionPerson(value, ActionTypePerson.BEATING), NPCs.elementAt(defender));
+                    break;
+                case 1:
+                    NPCs.elementAt(attacker).performAction(new ActionPerson(value, ActionTypePerson.KICKING), NPCs.elementAt(defender));
+                    break;
+            }
+
+            //making pause between actions
+            System.out.println();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            //changing roles
+            temp = defender;
+            defender = attacker;
+            attacker = temp;
         }
 
+        if (NPCs.elementAt(attacker).getHP() == 0){
+            NPCs.remove(attacker);
+        } else {
+            NPCs.remove(defender);
+        }
+
+        System.out.println("Duel is over. The winner is " + NPCs.elementAt(0).getName());
+    }
+
+    protected void action(){
         //putting NPCs on map
         int x;
         int y;
-        for (int i = 0; i < NPCquantity; i++) {
+        for (int i = 0; i < this.NPCs.size(); i++) {
             x = (int) (Math.random() * (map.getSize()-1));
             y = (int) (Math.random() * (map.getSize()-1));
 
@@ -104,10 +145,12 @@ public class Model {
         map.printMap(); //printing first state of map
 
         //performing random actions
-        int randomCyclesQuantity = (int) (Math.random() * 30 + 1);
         int randomActionType;
-        for (int i = 0; i < randomCyclesQuantity; i++) {
+        while (this.NPCs.size() > 2){
             randomActionType = (int) (Math.random() * 2);
+            if (this.NPCs.size() < 3){
+                break;
+            }
             switch (randomActionType)
             {
                 case 0:
@@ -121,5 +164,48 @@ public class Model {
         }
 
         map.printMap(); //printing last state of map
+
+        duel();
+    }
+
+    public void runWithParameters(int sizeOfMap, int NPCquantity){
+        if (NPCquantity == 1){
+            Person alone = new Person(Names.randomName(), (int) (Math.random() * 100) + 1);
+            alone.say("I'm so alone here...");
+            alone.setEmotion(new Emotion(((int) (Math.random() * 100) + 1), EmotionType.SAD));
+            alone.say("I don't wanna live anymore...");
+            alone.changeHP(-alone.getMaxHP());
+        } else if (NPCquantity <= 0){
+            System.out.println("Please, set at least one player!");
+        } else if (sizeOfMap < 4){
+            System.out.println("Please, set the size of map at least 4!");
+        } else if (NPCquantity > Math.pow(sizeOfMap,2) - 2){
+            System.out.println("PLease, choose different quantity of players - it must be no more than size of map squared - 2");
+        } else {
+
+            //initializing variables
+            map = new Map(sizeOfMap);
+            NPCs = new Vector<>();
+            for (int i = 0; i < NPCquantity; i++) {
+                NPCs.add(new Person(Names.randomName(), (int) (Math.random() * 100) + 1));
+            }
+
+            action();
+        }
+    }
+
+    public void runRandom(){
+        //creating map
+        int mapSize = (int) (Math.random() * 10 + 4);
+        map = new Map(mapSize);
+
+        //creating NPCs
+        int NPCquantity = (int) (Math.random() * (map.getSize()-1) + 2);
+        NPCs = new Vector<>();
+        for (int i = 0; i < NPCquantity; i++) {
+            NPCs.add(new Person(Names.randomName(), (int) (Math.random() * 100) + 1));
+        }
+
+        action();
     }
 }
