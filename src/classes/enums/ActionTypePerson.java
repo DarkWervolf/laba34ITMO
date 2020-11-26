@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Random;
 
 public enum ActionTypePerson {
-    KISSING (" is kissing"),
+    KISSING (" kisses"),
     WATCHING (" is attentively watching"),
-    TOUCHING (" is touching"),
-    EATING (" is eating"),
-    BEATING(" is beating"),
-    HUGGING (" is hugging"),
-    KICKING (" is kicking");
+    TOUCHING (" touches"),
+    EATING (" eats"),
+    BEATING(" beats"),
+    HUGGING (" hugs"),
+    KICKING (" kicks");
 
     private final String actionOutput;
     private static final ActionTypePerson[] VALUES = values();

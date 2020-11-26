@@ -9,6 +9,7 @@ import classes.interfaces.Alive;
 import classes.interfaces.Movable;
 import classes.things.Container;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.Vector;
 
 public class Person implements Movable, Alive {
@@ -111,8 +112,27 @@ public class Person implements Movable, Alive {
         action.perform(this, victim);
     }
 
-    public void performAction(Action action, Thing thing){
-        //in development
+    public void pickUpThing(Thing thing){
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getName()).append(" picked up ").append(thing.getTitle());
+        System.out.println(sb.toString());
+        this.inventory.add(thing);
+    }
+
+    public void throwAway(Thing thing){
+        this.inventory.remove(thing);
+    }
+
+    public int inventorySize(){
+        return inventory.size();
+    }
+
+    public Thing getThing(int index){
+        return this.inventory.elementAt(index);
+    }
+
+    public void useThing(Thing thing){
+        thing.use(this);
     }
 
     protected boolean isPrisoner(Container container){

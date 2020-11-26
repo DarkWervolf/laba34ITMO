@@ -43,10 +43,19 @@ public class ActionPerson extends Action {
                     victim.say("LMAO, you're such a well-aimed fighter!");
                 }
                 if (victim.getHP() > 0) {
+                    //victim emotions
                     if (this.getValue() > 50) {
                         victim.setEmotion(new Emotion(this.getValue(), EmotionType.SAD));
                     } else {
                         victim.setEmotion(new Emotion(this.getValue(), EmotionType.ANGRY));
+                    }
+
+                    System.out.println(); //empty line to make the output look better
+
+                    //victim healing
+                    if (victim.inventorySize() != 0){
+                        int thing = (int) (Math.random()*victim.inventorySize());
+                        victim.useThing(victim.getThing(thing));
                     }
                 }
                 break;

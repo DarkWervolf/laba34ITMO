@@ -5,6 +5,7 @@ import classes.actions.ActionStatic;
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
 import classes.enums.*;
+import classes.things.Food;
 
 import java.util.Vector;
 
@@ -142,20 +143,40 @@ public class Model {
     }
 
     protected void action(){
-        //putting NPCs on map
         int x;
         int y;
+
+        System.out.println(); //empty line to make the output look better
+
+        //putting things on map
+        for (int i = 0; i < this.things.size(); i++) {
+            x = (int) (Math.random() * (map.getSize()));
+            y = (int) (Math.random() * (map.getSize()));
+
+            while (!map.pointIsEmptyThing(x, y)){
+                x = (int) (Math.random() * (map.getSize()));
+                y = (int) (Math.random() * (map.getSize()));
+            }
+
+            map.setPosition(things.get(i), x, y);
+        }
+
+        System.out.println(); //empty line to make the output look better
+
+        //putting NPCs on map
         for (int i = 0; i < this.NPCs.size(); i++) {
-            x = (int) (Math.random() * (map.getSize()-1));
-            y = (int) (Math.random() * (map.getSize()-1));
+            x = (int) (Math.random() * (map.getSize()));
+            y = (int) (Math.random() * (map.getSize()));
 
             while (!map.pointIsEmptyPerson(x, y)){
-                x = (int) (Math.random() * (map.getSize()-1));
-                y = (int) (Math.random() * (map.getSize()-1));
+                x = (int) (Math.random() * (map.getSize()));
+                y = (int) (Math.random() * (map.getSize()));
             }
 
             map.setPosition(NPCs.get(i), x, y);
         }
+
+        System.out.println(); //empty line to make the output look better
 
         map.printMap(); //printing first state of map
 
@@ -193,7 +214,7 @@ public class Model {
         }
     }
 
-    public void runWithParameters(int sizeOfMap, int NPCquantity){
+    public void runWithParameters(int sizeOfMap, int NPCquantity, int thingsQuantity){
         if (NPCquantity == 1){
             Person alone = new Person(Names.randomName(), (int) (Math.random() * 100) + 1);
             alone.say("I'm so alone here...");
@@ -210,6 +231,12 @@ public class Model {
 
             //initializing variables
             map = new Map(sizeOfMap);
+
+            things = new Vector<>();
+            for (int i = 0; i < thingsQuantity; i++) {
+                things.add(new Food(FoodTitles.randomFoodTitle(), (int) (Math.random() * 100) + 1));
+            }
+
             NPCs = new Vector<>();
             for (int i = 0; i < NPCquantity; i++) {
                 NPCs.add(new Person(Names.randomName(), (int) (Math.random() * 100) + 1));
@@ -224,12 +251,21 @@ public class Model {
         int mapSize = (int) (Math.random() * 10 + 4);
         map = new Map(mapSize);
 
+        //creating things
+        int thingsQuantity = (int) (Math.random() * (map.getSize()-1) + 2);
+        things = new Vector<>();
+        for (int i = 0; i < thingsQuantity; i++) {
+            things.add(new Food(FoodTitles.randomFoodTitle(), (int) (Math.random() * 100) + 1));
+        }
+
         //creating NPCs
         int NPCquantity = (int) (Math.random() * (map.getSize()-1) + 2);
         NPCs = new Vector<>();
         for (int i = 0; i < NPCquantity; i++) {
             NPCs.add(new Person(Names.randomName(), (int) (Math.random() * 100) + 1));
         }
+
+
 
         action();
     }

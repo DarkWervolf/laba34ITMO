@@ -99,6 +99,7 @@ public class Map {
             } else {
                 points[x][y].occupy(person);
                 System.out.println(person.getName() + " is now located in point " + x + " " + y);
+                pickUpThing(person, x, y); //
                 return true;
             }
         }
@@ -120,6 +121,11 @@ public class Map {
     public void deleteElement(Person person){
         int[] coordinates = getPosition(person);
         this.points[coordinates[0]][coordinates[1]].leave();
+    }
+
+    public void deleteElement(Thing thing){
+        int[] coordinates = getPosition(thing);
+        this.points[coordinates[0]][coordinates[1]].takeAway();
     }
 
     protected int[] getPosition(Person person){
@@ -189,7 +195,16 @@ public class Map {
                 points[position[0]][position[1]].leave();
                 points[x][y].occupy(person);
                 System.out.println(person.getName() + " moved to point " + x + " " + y);
+
+                pickUpThing(person, x, y);
             }
+        }
+    }
+
+    public void pickUpThing(Person person, int x, int y){
+        if (!pointIsEmptyThing(x, y) && !pointIsEmptyThing(x, y)){
+            person.pickUpThing(this.points[x][y].thing);
+            this.deleteElement(this.points[x][y].thing);
         }
     }
 

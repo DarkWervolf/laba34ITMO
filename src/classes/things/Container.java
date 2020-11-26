@@ -4,6 +4,7 @@ import classes.Emotion;
 import classes.Person;
 import classes.abstracts.Thing;
 import classes.enums.EmotionType;
+import classes.enums.ThingType;
 
 public class Container extends Thing {
     private int size;
@@ -11,8 +12,8 @@ public class Container extends Thing {
     private Person prisoner;
     private Thing treasure;
 
-    public Container(String title, int size, ) {
-        super(title);
+    public Container(String title, int size) {
+        super(title, ThingType.CONTAINER);
         this.size = size;
         this.isEmpty = true;
         this.prisoner = null;

@@ -1,5 +1,8 @@
 package classes.abstracts;
 
+import classes.Person;
+import classes.enums.ThingType;
+
 public abstract class Thing {
     private String title;
     private ThingType type;
@@ -16,4 +19,6 @@ public abstract class Thing {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public void use(Person person){}
 }
