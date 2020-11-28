@@ -1,11 +1,14 @@
 package classes.actions;
 
 import classes.Emotion;
+import classes.Map;
 import classes.Person;
 import classes.abstracts.Action;
 import classes.enums.ActionTypePerson;
 import classes.enums.ActionTypeStatic;
 import classes.enums.EmotionType;
+import classes.enums.ThingType;
+import classes.things.Container;
 
 public class ActionPerson extends Action {
 
@@ -29,6 +32,31 @@ public class ActionPerson extends Action {
         //reaction depended on action
         switch (this.getType())
         {
+            case PRISONING:
+                victim.setEmotion(new Emotion(this.getValue(), EmotionType.ANGRY));
+
+                //looking for container
+                int containerIndex = -1;
+                for (int i = 0; i < person.inventorySize(); i++) {
+                    if (person.getThing(i).getType() == ThingType.CONTAINER){
+                        containerIndex = i;
+                        break;
+                    }
+                }
+
+                if (containerIndex != -1){
+                    //prisoning or freeing if there is container
+                    Container container = (Container) person.getThing(containerIndex);
+                    person.useThingOn(container, victim);
+                    if (container.contains(victim)){
+                        victim.makeFree();
+                    } else {
+                        victim.makePrisoner();
+                    }
+                }else{
+                    victim.say("Lol, you're such a fool, don't even have a cage to put me in!");
+                }
+                break;
             case EATING:
                 victim.say("GOD, I'M BEING EATEN, HELP ME");
                 victim.goNuts();
@@ -48,14 +76,6 @@ public class ActionPerson extends Action {
                         victim.setEmotion(new Emotion(this.getValue(), EmotionType.SAD));
                     } else {
                         victim.setEmotion(new Emotion(this.getValue(), EmotionType.ANGRY));
-                    }
-
-                    System.out.println(); //empty line to make the output look better
-
-                    //victim healing
-                    if (victim.inventorySize() != 0){
-                        int thing = (int) (Math.random()*victim.inventorySize());
-                        victim.useThing(victim.getThing(thing));
                     }
                 }
                 break;

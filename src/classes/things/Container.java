@@ -24,6 +24,15 @@ public class Container extends Thing {
         return size;
     }
 
+    @Override
+    public void use(Person victim) {
+        if (this.isEmpty){
+            put(victim);
+        }else{
+            takeOut(victim);
+        }
+    }
+
     public void put(Person prisoner) {
         this.prisoner = prisoner;
         System.out.println(prisoner.getName() + " has successfully been prisoned");
@@ -65,16 +74,10 @@ public class Container extends Thing {
     }
 
     public boolean contains(Person prisoner){
-        if (this.prisoner == prisoner){
-            return true;
-        }
-        else return false;
+        return this.prisoner == prisoner;
     }
 
     public boolean contains(Thing treasure){
-        if (this.treasure == treasure){
-            return true;
-        }
-        else return false;
+        return this.treasure == treasure;
     }
 }

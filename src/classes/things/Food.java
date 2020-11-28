@@ -19,5 +19,6 @@ public class Food extends Thing {
         StringBuilder sb = new StringBuilder();
         sb.append(person.getName()).append(" ate ").append(this.getTitle());
         System.out.println(sb.toString());
+        person.throwAway(this);
     }
 }

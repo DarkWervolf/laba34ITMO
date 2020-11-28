@@ -12,6 +12,8 @@ public enum ActionTypePerson {
     EATING (" eats"),
     BEATING(" beats"),
     HUGGING (" hugs"),
+    PRISONING( " prisons"),
+    FREEING (" gives freedom to"),
     KICKING (" kicks");
 
     private final String actionOutput;

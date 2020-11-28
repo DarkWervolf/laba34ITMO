@@ -16,6 +16,10 @@ public abstract class Thing {
         return title;
     }
 
+    public ThingType getType() {
+        return type;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }

@@ -234,8 +234,8 @@ public class Map {
             int newX = xPerson; //making new coordinates
             int newY = yPerson;
             while (!(Math.abs(newX - xVictim) < 2 && Math.abs(newY-yVictim)<2 && pointIsEmptyPerson(newX, newY))){ //moving to victim, if not near
-                newX = (int) (Math.random() * (getSize()-1) + (xVictim-1));
-                newY = (int) (Math.random() * (getSize()-1) + (yVictim-1));
+                newX = (int) (Math.random() * (getSize()) + (xVictim-1));
+                newY = (int) (Math.random() * (getSize()) + (yVictim-1));
             }
             move(person, newX, newY); //moving NPC
             printMap();
@@ -252,8 +252,8 @@ public class Map {
         int newX = xPerson; //making new coordinates
         int newY = yPerson;
         while (!(Math.abs(newX - xBully) >= 2 && Math.abs(newY-yBully) >= 2 && pointIsEmptyPerson(newX, newY))){ //moving away
-            newX = (int) (Math.random() * (getSize()-1));
-            newY = (int) (Math.random() * (getSize()-1));
+            newX = (int) (Math.random() * (getSize()));
+            newY = (int) (Math.random() * (getSize()));
         }
         move(person, newX, newY); //moving NPC
         printMap();

@@ -17,13 +17,17 @@ public class Person implements Movable, Alive {
     private String name;
     private int HP;
     private int maxHP;
+    private int ID;
+    private boolean isPrisoner;
     private Emotion currentEmotion;
     private Vector<Thing> inventory;
 
-    public Person(String name, int HP) {
+    public Person(String name, int HP, int ID) {
         this.name = name;
         this.HP = HP;
+        this.ID = ID;
         this.maxHP = 100;
+        this.isPrisoner = false;
         currentEmotion = new Emotion();
         this.shoutIwasBorn();
         this.randomEmotion();
@@ -135,11 +139,20 @@ public class Person implements Movable, Alive {
         thing.use(this);
     }
 
-    protected boolean isPrisoner(Container container){
-        if (container.contains(this)){
-            return true;
-        }
-        else return false;
+    public void useThingOn(Thing thing, Person victim){
+        thing.use(victim);
+    }
+
+    public boolean isPrisoner(){
+        return isPrisoner;
+    }
+
+    public void makePrisoner(){
+        this.isPrisoner = true;
+    }
+
+    public void makeFree(){
+        this.isPrisoner = false;
     }
 
     @Override
@@ -160,5 +173,39 @@ public class Person implements Movable, Alive {
     @Override
     public void goNuts() {
         System.out.println(this.getName() + ": Братцы, братцы...");
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.ID).append(" ").append(this.getName()).append(" ").append(this.getHP());
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + this.ID;
+        result = prime * result + this.maxHP;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null){
+            return false;
+        }
+
+        if (o.getClass() != this.getClass()){
+            return false;
+        }
+
+        if (this.hashCode() == o.hashCode()){
+            Person another = (Person) o;
+            return this.name == another.getName() && this.ID == another.ID;
+        } else {
+            return false;
+        }
     }
 }

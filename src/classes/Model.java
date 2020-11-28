@@ -5,6 +5,7 @@ import classes.actions.ActionStatic;
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
 import classes.enums.*;
+import classes.things.Container;
 import classes.things.Food;
 
 import java.util.Vector;
@@ -20,10 +21,39 @@ public class Model {
 
     /*
     Scheme:
-        1. Running with parameters or full random
-        2. Action
-        3. Random end: duel or happy end
+        1. Setting up the parameters: full random or given
+        2. Creating model
+        3. Action until there are only two of people
+        4. Random end: duel or happy end
      */
+
+    protected void createModel(int sizeOfMap, int NPCquantity, int thingsQuantity){
+        map = new Map(sizeOfMap);
+
+        int thingType;
+        things = new Vector<>();
+        for (int i = 0; i < thingsQuantity; i++) {
+            thingType = (int) (Math.random()*(ThingType.values().length));
+            switch (thingType)
+            {
+                case 0:
+                    things.add(new Food(FoodTitles.randomFoodTitle(), (int) (Math.random() * 100) + 1));
+                    break;
+                case 1:
+                    things.add(new Container(ContainerTitles.randomContainerTitle(), (int) ((Math.random() * 100) + 1)));
+                    break;
+                default:
+                    things.add(new Food(FoodTitles.randomFoodTitle(), (int) (Math.random() * 100) + 1));
+                    break;
+            }
+
+        }
+
+        NPCs = new Vector<>();
+        for (int i = 0; i < NPCquantity; i++) {
+            NPCs.add(new Person(Names.randomName(), (int) (Math.random() * 100) + 1, (int) (Math.random() * 100) + 1));
+        }
+    }
 
     protected void performStaticAction() {
         int randomNPC;
@@ -33,13 +63,6 @@ public class Model {
         randomValue = (int) (Math.random() * ActionTypeStatic.values().length);
         this.NPCs.elementAt(randomNPC).performAction(new ActionStatic(randomValue, ActionTypeStatic.randomAction()));
         System.out.println();
-
-        //making pause between actions
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     protected void performPersonAction(){
@@ -59,20 +82,29 @@ public class Model {
 
         //performing actions
         randomValue = (int) (Math.random() * 100);
-        this.NPCs.elementAt(randomNPC).performAction(new ActionPerson(randomValue, ActionTypePerson.randomAction()), this.NPCs.elementAt(randomVictim));
+        ActionPerson actionPerson = new ActionPerson(randomValue, ActionTypePerson.randomAction());
+        this.NPCs.elementAt(randomNPC).performAction(actionPerson, this.NPCs.elementAt(randomVictim));
+
         System.out.println();
 
         //removing victim if dead
         if (NPCs.elementAt(randomVictim).getHP() == 0){
             this.map.deleteElement(NPCs.elementAt(randomVictim));
             NPCs.remove(randomVictim);
+        } else {
+            //running away if action was bad
+            if (actionPerson.getType() == ActionTypePerson.BEATING ||
+                    actionPerson.getType() == ActionTypePerson.KICKING){
+                NPCs.elementAt(randomVictim).runAwayFrom(this.map, NPCs.elementAt(randomNPC));
+            }
         }
 
-        //making pause between actions
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        //adding or deleting victim if it was given freedom or prisoned
+        if (NPCs.elementAt(randomVictim).isPrisoner()){
+            this.map.deleteElement(NPCs.elementAt(randomVictim));
+            NPCs.remove(randomVictim);
+        } else if (actionPerson.getType() == ActionTypePerson.FREEING){
+            //placing victim somewhere
         }
     }
 
@@ -197,6 +229,13 @@ public class Model {
                     break;
                 default: break;
             }
+
+            //making pause between actions
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         map.printMap(); //printing last state of map
@@ -216,7 +255,7 @@ public class Model {
 
     public void runWithParameters(int sizeOfMap, int NPCquantity, int thingsQuantity){
         if (NPCquantity == 1){
-            Person alone = new Person(Names.randomName(), (int) (Math.random() * 100) + 1);
+            Person alone = new Person(Names.randomName(), (int) (Math.random() * 100) + 1, (int) (Math.random() * 100) + 1);
             alone.say("I'm so alone here...");
             alone.setEmotion(new Emotion(((int) (Math.random() * 100) + 1), EmotionType.SAD));
             alone.say("I don't wanna live anymore...");
@@ -230,17 +269,7 @@ public class Model {
         } else {
 
             //initializing variables
-            map = new Map(sizeOfMap);
-
-            things = new Vector<>();
-            for (int i = 0; i < thingsQuantity; i++) {
-                things.add(new Food(FoodTitles.randomFoodTitle(), (int) (Math.random() * 100) + 1));
-            }
-
-            NPCs = new Vector<>();
-            for (int i = 0; i < NPCquantity; i++) {
-                NPCs.add(new Person(Names.randomName(), (int) (Math.random() * 100) + 1));
-            }
+            createModel(sizeOfMap, NPCquantity, thingsQuantity);
 
             action();
         }
@@ -248,24 +277,15 @@ public class Model {
 
     public void runRandom(){
         //creating map
-        int mapSize = (int) (Math.random() * 10 + 4);
-        map = new Map(mapSize);
-
-        //creating things
-        int thingsQuantity = (int) (Math.random() * (map.getSize()-1) + 2);
-        things = new Vector<>();
-        for (int i = 0; i < thingsQuantity; i++) {
-            things.add(new Food(FoodTitles.randomFoodTitle(), (int) (Math.random() * 100) + 1));
-        }
+        int sizeOfMap = (int) (Math.random() * 10 + 4);
 
         //creating NPCs
-        int NPCquantity = (int) (Math.random() * (map.getSize()-1) + 2);
-        NPCs = new Vector<>();
-        for (int i = 0; i < NPCquantity; i++) {
-            NPCs.add(new Person(Names.randomName(), (int) (Math.random() * 100) + 1));
-        }
+        int NPCquantity = (int) (Math.random() * (sizeOfMap-1) + 2);
 
+        //creating things
+        int thingsQuantity = (int) (Math.random() * (sizeOfMap-1) + 2);
 
+        createModel(sizeOfMap, NPCquantity, thingsQuantity);
 
         action();
     }
