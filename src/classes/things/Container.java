@@ -8,14 +8,16 @@ import classes.enums.ThingType;
 
 public class Container extends Thing {
     private int size;
-    private boolean isEmpty;
+    private boolean isEmptyPerson;
+    private boolean isEmptyThing;
     private Person prisoner;
     private Thing treasure;
 
     public Container(String title, int size) {
         super(title, ThingType.CONTAINER);
         this.size = size;
-        this.isEmpty = true;
+        this.isEmptyPerson = true;
+        this.isEmptyThing = true;
         this.prisoner = null;
         this.treasure = null;
     }
@@ -26,7 +28,7 @@ public class Container extends Thing {
 
     @Override
     public void use(Person victim) {
-        if (this.isEmpty){
+        if (this.isEmptyPerson){
             put(victim);
         }else{
             takeOut(victim);
@@ -46,20 +48,23 @@ public class Container extends Thing {
             case 1: this.prisoner.setEmotion(new Emotion(value, EmotionType.SAD)); break;
             default: this.prisoner.setEmotion(new Emotion(value, EmotionType.ANGRY)); break;
         }
+
+        this.isEmptyPerson = false;
     }
 
     public void put(Thing treasure) {
         this.treasure = treasure;
+        this.isEmptyThing = false;
         System.out.println(treasure.getTitle() + " has been put into " + this.getTitle());
     }
 
     public void takeOut(Thing treasure){
-        this.treasure = null;
         System.out.println(treasure.getTitle() + " has been taken out from " + this.getTitle());
+        this.treasure = null;
+        this.isEmptyThing = true;
     }
 
     public void takeOut(Person prisoner){
-        this.prisoner = null;
         System.out.println(prisoner.getName() + " has been given freedom");
 
         int value = (int) (Math.random() * 10);
@@ -71,6 +76,9 @@ public class Container extends Thing {
             case 1: prisoner.setEmotion(new Emotion(value, EmotionType.ANGRY)); break;
             default: prisoner.setEmotion(new Emotion(value, EmotionType.HAPPY)); break;
         }
+
+        this.prisoner = null;
+        this.isEmptyPerson = true;
     }
 
     public boolean contains(Person prisoner){
@@ -79,5 +87,21 @@ public class Container extends Thing {
 
     public boolean contains(Thing treasure){
         return this.treasure == treasure;
+    }
+
+    public boolean isEmptyPerson() {
+        return isEmptyPerson;
+    }
+
+    public boolean isEmptyThing() {
+        return isEmptyThing;
+    }
+
+    public Person getPrisoner() {
+        return prisoner;
+    }
+
+    public Thing getTreasure() {
+        return treasure;
     }
 }

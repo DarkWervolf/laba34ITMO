@@ -61,7 +61,51 @@ public class Model {
         //random static action performance
         randomNPC = (int) (Math.random() * (NPCs.size()));
         randomValue = (int) (Math.random() * ActionTypeStatic.values().length);
-        this.NPCs.elementAt(randomNPC).performAction(new ActionStatic(randomValue, ActionTypeStatic.randomAction()));
+
+        ActionStatic actionStatic = new ActionStatic(randomValue, ActionTypeStatic.randomAction());
+
+        //special block for FREEING
+        if (actionStatic.getType() == ActionTypeStatic.FREEING){
+            //looking for container
+            int containerIndex = -1;
+            for (int i = 0; i < NPCs.elementAt(randomNPC).inventorySize(); i++) {
+                if (NPCs.elementAt(randomNPC).getThing(i).getType() == ThingType.CONTAINER) {
+                    containerIndex = i;
+                    break;
+                }
+            }
+            //checking if was found
+            if (containerIndex != -1){
+                Container container = (Container) NPCs.elementAt(randomNPC).getThing(containerIndex);
+                //checking if not empty, so there was someone to free
+                if (!container.isEmptyPerson()) {
+
+                    NPCs.add(container.getPrisoner());
+
+                    NPCs.elementAt(NPCs.indexOf(container.getPrisoner())).makeFree();
+
+                    //placing prisoner on map
+                    int x = (int) (Math.random() * (map.getSize()));
+                    int y = (int) (Math.random() * (map.getSize()));
+
+                    while (!map.pointIsEmptyPerson(x, y)) {
+                        x = (int) (Math.random() * (map.getSize()));
+                        y = (int) (Math.random() * (map.getSize()));
+                    }
+                    map.setPosition(NPCs.elementAt(NPCs.indexOf(container.getPrisoner())), x, y);
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(NPCs.elementAt(randomNPC).getName()).append(" ").append(actionStatic.perform()).append(NPCs.elementAt(NPCs.indexOf(container.getPrisoner())).getName());
+
+                    System.out.println(sb.toString());
+
+                    NPCs.elementAt(randomNPC).useThing(container);
+                }
+            }
+        } else{
+            NPCs.elementAt(randomNPC).performAction(actionStatic);
+        }
+
         System.out.println();
     }
 
@@ -87,8 +131,8 @@ public class Model {
 
         System.out.println();
 
-        //removing victim if dead
-        if (NPCs.elementAt(randomVictim).getHP() == 0){
+        //removing victim if dead or if it was prisoned
+        if (NPCs.elementAt(randomVictim).getHP() == 0 || NPCs.elementAt(randomVictim).isPrisoner()){
             this.map.deleteElement(NPCs.elementAt(randomVictim));
             NPCs.remove(randomVictim);
         } else {
@@ -97,14 +141,6 @@ public class Model {
                     actionPerson.getType() == ActionTypePerson.KICKING){
                 NPCs.elementAt(randomVictim).runAwayFrom(this.map, NPCs.elementAt(randomNPC));
             }
-        }
-
-        //adding or deleting victim if it was given freedom or prisoned
-        if (NPCs.elementAt(randomVictim).isPrisoner()){
-            this.map.deleteElement(NPCs.elementAt(randomVictim));
-            NPCs.remove(randomVictim);
-        } else if (actionPerson.getType() == ActionTypePerson.FREEING){
-            //placing victim somewhere
         }
     }
 

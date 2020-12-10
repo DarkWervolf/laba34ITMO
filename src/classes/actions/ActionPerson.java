@@ -33,8 +33,6 @@ public class ActionPerson extends Action {
         switch (this.getType())
         {
             case PRISONING:
-                victim.setEmotion(new Emotion(this.getValue(), EmotionType.ANGRY));
-
                 //looking for container
                 int containerIndex = -1;
                 for (int i = 0; i < person.inventorySize(); i++) {
@@ -45,13 +43,14 @@ public class ActionPerson extends Action {
                 }
 
                 if (containerIndex != -1){
-                    //prisoning or freeing if there is container
+                    //prisoning if there is container
                     Container container = (Container) person.getThing(containerIndex);
-                    person.useThingOn(container, victim);
-                    if (container.contains(victim)){
-                        victim.makeFree();
-                    } else {
+                    if (container.isEmptyPerson()){
+                        person.useThingOn(container, victim);
+                        victim.setEmotion(new Emotion(this.getValue(), EmotionType.ANGRY));
                         victim.makePrisoner();
+                    } else {
+                        victim.say("Damn, you already put someone in there...");
                     }
                 }else{
                     victim.say("Lol, you're such a fool, don't even have a cage to put me in!");

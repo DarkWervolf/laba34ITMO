@@ -19,30 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="Working Commit 1.9&#10;Added things and collecting">
-      <change afterPath="$PROJECT_DIR$/src/classes/enums/ContainerTitles.java" afterDir="false" />
+    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="Working Commit 2.0&#10;Nothing works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Model.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/abstracts/Thing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/abstracts/Thing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/actions/ActionPerson$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/actions/ActionPerson$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/actions/ActionPerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/actions/ActionPerson.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/enums/ActionTypePerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/enums/ActionTypePerson.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/enums/ThingType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/enums/ThingType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/things/Container.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/things/Container.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/classes/things/Food.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/classes/things/Food.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/laba3/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/laba3/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/abstracts/Thing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/abstracts/Thing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/actions/ActionPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/actions/ActionPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/actions/ActionStatic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/actions/ActionStatic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionTypePerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypePerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/enums/ThingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ThingType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionTypeStatic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypeStatic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/things/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/things/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/things/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/things/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +45,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProjectId" id="1kWEBxlji2hdelGLjbjQh30SVBd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -141,10 +127,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="163" y="0" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1606209895786" />
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1606551514349">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1607633536537">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1606551514349" />
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1607633536537" />
     <state x="466" y="258" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606544867350">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -161,22 +147,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="460" y="69" key="Github.UntrackedFilesDialog/0.0.1366.728@0.0.1366.728" timestamp="1605910116893" />
-    <state width="1323" height="331" key="GridCell.Tab.0.bottom" timestamp="1606552022456">
+    <state width="1323" height="570" key="GridCell.Tab.0.bottom" timestamp="1607634101324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="331" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606552022456" />
-    <state width="1323" height="331" key="GridCell.Tab.0.center" timestamp="1606552022456">
+    <state width="1323" height="570" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607634101324" />
+    <state width="1323" height="570" key="GridCell.Tab.0.center" timestamp="1607634101324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="331" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606552022456" />
-    <state width="1323" height="331" key="GridCell.Tab.0.left" timestamp="1606552022456">
+    <state width="1323" height="570" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607634101324" />
+    <state width="1323" height="570" key="GridCell.Tab.0.left" timestamp="1607634101324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="331" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606552022456" />
-    <state width="1323" height="331" key="GridCell.Tab.0.right" timestamp="1606552022456">
+    <state width="1323" height="570" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607634101324" />
+    <state width="1323" height="570" key="GridCell.Tab.0.right" timestamp="1607634101324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="331" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606552022456" />
+    <state width="1323" height="570" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607634101324" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1606551795888">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -11,6 +11,7 @@ public enum ActionTypeStatic {
     SMILING (" is smiling"),
     EATING (" is eating"),
     WHISTLING (" is whistling"),
+    FREEING( " is giving freedom to "),
     LAUTHING (" is laughing");
 
 
