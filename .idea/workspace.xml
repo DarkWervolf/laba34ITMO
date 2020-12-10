@@ -19,15 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="Working Commit 2.0&#10;Nothing works">
+    <list default="true" id="56294f6d-e311-4b46-9564-10c9b11cd355" name="Default Changelist" comment="fixup! Working Commit 2.1 Prisoning and freeing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/actions/ActionPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/actions/ActionPerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/actions/ActionStatic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/actions/ActionStatic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionTypePerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypePerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/enums/ActionTypeStatic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/enums/ActionTypeStatic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/things/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/things/Container.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1kWEBxlji2hdelGLjbjQh30SVBd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -95,12 +89,34 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -120,7 +136,8 @@
     <MESSAGE value="Working commit 1.7&#10;added running with parameters&#10;added dueling&#10;added HP" />
     <MESSAGE value="Commit 1.8&#10;Beginning to add things" />
     <MESSAGE value="Working Commit 1.9&#10;Added things and collecting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working Commit 1.9&#10;Added things and collecting" />
+    <MESSAGE value="Working Commit 2.1&#10;Prisoning and freeing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working Commit 2.1&#10;Prisoning and freeing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="163" y="0" key="#Project_Structure" timestamp="1606209895786">
@@ -135,6 +152,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="466" y="258" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1606544867350" />
+    <state x="331" y="0" key="CommitChangelistDialog2" timestamp="1607634777500">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="331" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1607634777500" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1607634968624">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1607634968624" />
     <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1605909890954">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -147,22 +172,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="460" y="69" key="Github.UntrackedFilesDialog/0.0.1366.728@0.0.1366.728" timestamp="1605910116893" />
-    <state width="1323" height="570" key="GridCell.Tab.0.bottom" timestamp="1607634101324">
+    <state width="1323" height="570" key="GridCell.Tab.0.bottom" timestamp="1607634343672">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="570" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607634101324" />
-    <state width="1323" height="570" key="GridCell.Tab.0.center" timestamp="1607634101324">
+    <state width="1323" height="570" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607634343672" />
+    <state width="1323" height="570" key="GridCell.Tab.0.center" timestamp="1607634343672">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="570" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607634101324" />
-    <state width="1323" height="570" key="GridCell.Tab.0.left" timestamp="1607634101324">
+    <state width="1323" height="570" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607634343672" />
+    <state width="1323" height="570" key="GridCell.Tab.0.left" timestamp="1607634343672">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="570" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607634101324" />
-    <state width="1323" height="570" key="GridCell.Tab.0.right" timestamp="1607634101324">
+    <state width="1323" height="570" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607634343672" />
+    <state width="1323" height="570" key="GridCell.Tab.0.right" timestamp="1607634343672">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="570" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607634101324" />
+    <state width="1323" height="570" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607634343672" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1606551795888">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -179,22 +204,34 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1606551795888" />
+    <state x="321" y="125" key="MultipleFileMergeDialog" timestamp="1607634468311">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="321" y="125" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1607634468311" />
+    <state x="456" y="66" key="RollbackChangesDialog" timestamp="1607634940872">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="456" y="66" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1607634940872" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1606054003357">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1606054003357" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606426826428">
+    <state x="470" y="80" key="VCS.ChangeListViewerDialog" timestamp="1607634408670">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1606426826428" />
+    <state x="470" y="80" key="VCS.ChangeListViewerDialog/0.0.1366.728@0.0.1366.728" timestamp="1607634408670" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1607634435576">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1607634435576" />
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605909739673">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1605909739673" />
-    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606426702992">
+    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607634511511">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1606426702992" />
+    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1607634511511" />
     <state x="228" y="99" width="909" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606057268612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
