@@ -104,4 +104,41 @@ public class Container extends Thing {
     public Thing getTreasure() {
         return treasure;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 3;
+        result = prime * result + this.size;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null){
+            return false;
+        }
+
+        if (o.getClass() != this.getClass()){
+            return false;
+        }
+
+        if (this.hashCode() == o.hashCode()){
+            Container another = (Container) o;
+            if (another.getSize() == this.getSize()){
+                return another.getPrisoner() == this.getPrisoner() && another.getTreasure() == this.getTreasure();
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getTitle()).append(' ').append(this.size);
+        return sb.toString();
+    }
 }

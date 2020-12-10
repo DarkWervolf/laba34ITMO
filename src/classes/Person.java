@@ -203,7 +203,7 @@ public class Person implements Movable, Alive {
 
         if (this.hashCode() == o.hashCode()){
             Person another = (Person) o;
-            return this.name == another.getName() && this.ID == another.ID;
+            return this.name.equals(another.getName()) && this.ID == another.ID;
         } else {
             return false;
         }

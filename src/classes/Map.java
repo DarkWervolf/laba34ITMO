@@ -255,8 +255,6 @@ public class Map {
             }else{
                 System.out.println("No place to move");
             }
-            move(person, newX, newY); //moving NPC
-            printMap();
         }
     }
 
