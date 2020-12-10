@@ -233,12 +233,29 @@ public class Map {
         if (!(Math.abs(xPerson - xVictim) < 2 && Math.abs(xPerson-yVictim)<2)){
             int newX = xPerson; //making new coordinates
             int newY = yPerson;
+
+            //checking if there's place to move by counting interations. If too many - break.
+            int iterationQuantity = 0;
+            boolean noPlaceFlag = false;
+
             while (!(Math.abs(newX - xVictim) < 2 && Math.abs(newY-yVictim)<2 && pointIsEmptyPerson(newX, newY))){ //moving to victim, if not near
                 newX = (int) (Math.random() * (getSize()) + (xVictim-1));
                 newY = (int) (Math.random() * (getSize()) + (yVictim-1));
+
+                iterationQuantity++;
+                if (iterationQuantity == this.size*this.size*this.size){
+                    noPlaceFlag = true;
+                    break;
+                }
             }
-            move(person, newX, newY); //moving NPC
-            printMap();
+
+            //moving if place was found
+            if (!noPlaceFlag){
+                move(person, newX, newY); //moving NPC
+                printMap();
+            }else{
+                System.out.println("No place to move");
+            }
         }
     }
 
@@ -251,12 +268,61 @@ public class Map {
 
         int newX = xPerson; //making new coordinates
         int newY = yPerson;
+
+        //checking if there's place to move by counting interations. If too many - break.
+        int iterationQuantity = 0;
+        boolean noPlaceFlag = false;
+
         while (!(Math.abs(newX - xBully) >= 2 && Math.abs(newY-yBully) >= 2 && pointIsEmptyPerson(newX, newY))){ //moving away
             newX = (int) (Math.random() * (getSize()));
             newY = (int) (Math.random() * (getSize()));
+
+            iterationQuantity++;
+            if (iterationQuantity == this.size*this.size*this.size){
+                noPlaceFlag = true;
+                break;
+            }
         }
-        move(person, newX, newY); //moving NPC
-        printMap();
+
+        //moving if place was found
+        if (!noPlaceFlag){
+            move(person, newX, newY); //moving NPC
+            printMap();
+        }else{
+            System.out.println("No place to move");
+        }
+    }
+
+    public void randomMove(Person person){
+        int xPerson, yPerson;
+        xPerson = (getPosition(person))[0]; //getting coordinates of NPC
+        yPerson = (getPosition(person))[1];
+
+        int newX = xPerson; //making new coordinates
+        int newY = yPerson;
+
+        //checking if there's place to move by counting interations. If too many - break.
+        int iterationQuantity = 0;
+        boolean noPlaceFlag = false;
+
+        while (newX == xPerson && newY == yPerson){
+            newX = (int) (Math.random() * getSize());
+            newY = (int) (Math.random() * getSize());
+
+            iterationQuantity++;
+            if (iterationQuantity == this.size*this.size*this.size){
+                noPlaceFlag = true;
+                break;
+            }
+        }
+
+        //moving if place was found
+        if (!noPlaceFlag){
+            move(person, newX, newY); //moving NPC
+            printMap();
+        }else{
+            System.out.println("No place to move");
+        }
     }
 
     public boolean pointIsEmptyPerson(int x, int y){

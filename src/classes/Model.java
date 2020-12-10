@@ -2,7 +2,6 @@ package classes;
 
 import classes.actions.ActionPerson;
 import classes.actions.ActionStatic;
-import classes.abstracts.Action;
 import classes.abstracts.Thing;
 import classes.enums.*;
 import classes.things.Container;
@@ -13,8 +12,8 @@ import java.util.Vector;
 public class Model {
     private Map map;
     private Vector<Person> NPCs;
+    private Vector<Person> prisoners;
     private Vector<Thing> things;
-    private Vector<Action> actions;
 
     public Model() {
     }
@@ -77,34 +76,49 @@ public class Model {
             randomVictim = (int) (Math.random() * (NPCs.size()));
         }
 
+        //coordinates to check if moving happened
+        int[] oldCoordinates = map.getPosition(NPCs.elementAt(randomNPC));
+
         //moving to victim
-        this.map.moveToPerson(NPCs.elementAt(randomNPC), NPCs.elementAt(randomVictim));
+        map.moveToPerson(NPCs.elementAt(randomNPC), NPCs.elementAt(randomVictim));
 
-        //performing actions
-        randomValue = (int) (Math.random() * 100);
-        ActionPerson actionPerson = new ActionPerson(randomValue, ActionTypePerson.randomAction());
-        this.NPCs.elementAt(randomNPC).performAction(actionPerson, this.NPCs.elementAt(randomVictim));
+        //checking if moved
+        if (this.map.getPosition(this.NPCs.elementAt(randomNPC)) != oldCoordinates) {
 
-        System.out.println();
+            //performing actions
+            randomValue = (int) (Math.random() * 100);
+            ActionPerson actionPerson = new ActionPerson(randomValue, ActionTypePerson.randomAction());
+            NPCs.elementAt(randomNPC).performAction(actionPerson, NPCs.elementAt(randomVictim));
 
-        //removing victim if dead
-        if (NPCs.elementAt(randomVictim).getHP() == 0){
-            this.map.deleteElement(NPCs.elementAt(randomVictim));
-            NPCs.remove(randomVictim);
-        } else {
-            //running away if action was bad
-            if (actionPerson.getType() == ActionTypePerson.BEATING ||
-                    actionPerson.getType() == ActionTypePerson.KICKING){
-                NPCs.elementAt(randomVictim).runAwayFrom(this.map, NPCs.elementAt(randomNPC));
+            System.out.println();
+
+            //adding or deleting victim if it was given freedom or prisoned
+            if (NPCs.elementAt(randomVictim).isPrisoner()) {
+                map.deleteElement(NPCs.elementAt(randomVictim));
+                prisoners.add(NPCs.elementAt(randomVictim));
+                NPCs.remove(randomVictim);
+            } else if (actionPerson.getType() == ActionTypePerson.FREEING) {
+
+
+                NPCs.add(NPCs.elementAt(randomNPC).getThing());
+                prisoners.remove(randomVictim);
             }
-        }
 
-        //adding or deleting victim if it was given freedom or prisoned
-        if (NPCs.elementAt(randomVictim).isPrisoner()){
-            this.map.deleteElement(NPCs.elementAt(randomVictim));
-            NPCs.remove(randomVictim);
-        } else if (actionPerson.getType() == ActionTypePerson.FREEING){
-            //placing victim somewhere
+            //removing victim if dead
+            if (NPCs.elementAt(randomVictim).getHP() == 0) {
+                map.deleteElement(NPCs.elementAt(randomVictim));
+                NPCs.remove(randomVictim);
+            } else {
+                //running away if action was bad
+                if (actionPerson.getType() == ActionTypePerson.BEATING ||
+                        actionPerson.getType() == ActionTypePerson.KICKING) {
+                    NPCs.elementAt(randomVictim).runAwayFrom(map, NPCs.elementAt(randomNPC));
+                }
+            }
+        } else {
+            StringBuilder sb = new StringBuilder();
+            sb.append(NPCs.elementAt(randomNPC).getName()).append(" couldn't move to ").append(NPCs.elementAt(randomVictim).getName());
+            System.out.println(sb.toString());
         }
     }
 
@@ -232,7 +246,7 @@ public class Model {
 
             //making pause between actions
             try {
-                Thread.sleep(2000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
