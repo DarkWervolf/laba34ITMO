@@ -14,7 +14,6 @@ public class Model {
     private Map map;
     private Vector<Person> NPCs;
     private Vector<Thing> things;
-    private Vector<Action> actions;
 
     public Model() {
     }

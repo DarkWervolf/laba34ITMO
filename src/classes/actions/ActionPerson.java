@@ -11,7 +11,7 @@ import classes.things.Container;
 
 public class ActionPerson extends Action {
 
-    ActionTypePerson type;
+    private ActionTypePerson type;
 
     public ActionPerson(int value, ActionTypePerson type) {
         super(value);

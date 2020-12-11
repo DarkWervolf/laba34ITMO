@@ -5,7 +5,7 @@ import classes.enums.ActionTypeStatic;
 
 public class ActionStatic extends Action {
 
-    ActionTypeStatic type;
+    private ActionTypeStatic type;
 
     public ActionStatic(int value, ActionTypeStatic type) {
         super(value);

@@ -6,8 +6,7 @@ import classes.enums.ActionTypeThing;
 
 public class ActionThing extends Action {
 
-    ActionTypeThing type;
-    Thing thing;
+    private ActionTypeThing type;
 
     public ActionThing(int value, ActionTypeThing type) {
         super(value);

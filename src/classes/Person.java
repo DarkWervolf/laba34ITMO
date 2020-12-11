@@ -25,7 +25,6 @@ public class Person implements Movable, Alive {
         this.ID = ID;
         this.maxHP = 100;
         this.isPrisoner = false;
-        currentEmotion = new Emotion();
         this.shoutIwasBorn();
         this.randomEmotion();
         this.inventory = new Vector<>();

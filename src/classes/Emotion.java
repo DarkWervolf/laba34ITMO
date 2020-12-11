@@ -12,8 +12,6 @@ public class Emotion {
         this.type = type;
     }
 
-    protected Emotion() {}
-
     public String getTitle() {
         return title;
     }

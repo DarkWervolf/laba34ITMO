@@ -16,54 +16,46 @@ public class Map {
             this.thing = null;
         }
 
-        protected void occupy(Person person){
+        public void occupy(Person person){
             this.person = person;
             this.isEmpty_Person = false;
         }
 
-        protected void put(Thing thing){
+        public void put(Thing thing){
             this.thing = thing;
             isEmpty_Thing = false;
         }
 
-        protected void leave(){
+        public void leave(){
             this.person = null;
             isEmpty_Person = true;
         }
 
-        protected void takeAway(){
+        public void takeAway(){
             this.thing = null;
             isEmpty_Thing = true;
         }
 
-        protected boolean isHere(Person person){
+        public boolean isHere(Person person){
             if (this.person == person){
                 return true;
             }
             else return false;
         }
 
-        protected boolean isHere(Thing thing){
+        public boolean isHere(Thing thing){
             if (this.thing == thing){
                 return true;
             }
             else return false;
         }
 
-        protected boolean isEmpty_Person() {
+        public boolean isEmpty_Person() {
             return isEmpty_Person;
         }
 
-        protected void setIsEmpty_Person(boolean empty_Person) {
-            isEmpty_Person = empty_Person;
-        }
-
-        protected boolean isEmpty_Thing() {
+        public boolean isEmpty_Thing() {
             return isEmpty_Thing;
-        }
-
-        protected void setIsEmpty_Thing(boolean empty_Thing) {
-            isEmpty_Thing = empty_Thing;
         }
     }
 

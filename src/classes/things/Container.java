@@ -81,14 +81,6 @@ public class Container extends Thing {
         this.isEmptyPerson = true;
     }
 
-    public boolean contains(Person prisoner){
-        return this.prisoner == prisoner;
-    }
-
-    public boolean contains(Thing treasure){
-        return this.treasure == treasure;
-    }
-
     public boolean isEmptyPerson() {
         return isEmptyPerson;
     }

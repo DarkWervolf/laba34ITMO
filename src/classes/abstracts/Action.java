@@ -11,6 +11,17 @@ public abstract class Action {
         this.value = value;
     }
 
+    public Action(String title, int value) {
+        this.title = title;
+        this.value = value;
+    }
+
+    public Action(String title, int value, Emotion emotion){
+        this.title = title;
+        this.value = value;
+        this.emotion = emotion;
+    }
+
     public int getValue() {
         return value;
     }
