@@ -2,14 +2,11 @@ package classes;
 
 import classes.actions.ActionPerson;
 import classes.actions.ActionStatic;
-import classes.abstracts.Action;
 import classes.abstracts.Thing;
 import classes.enums.EmotionType;
 import classes.interfaces.Alive;
 import classes.interfaces.Movable;
-import classes.things.Container;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.Vector;
 
 public class Person implements Movable, Alive {

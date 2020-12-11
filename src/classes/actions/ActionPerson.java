@@ -1,7 +1,6 @@
 package classes.actions;
 
 import classes.Emotion;
-import classes.Map;
 import classes.Person;
 import classes.abstracts.Action;
 import classes.enums.ActionTypePerson;

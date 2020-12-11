@@ -1,6 +1,5 @@
 package classes.actions;
 
-import classes.Person;
 import classes.abstracts.Action;
 import classes.enums.ActionTypeStatic;
 

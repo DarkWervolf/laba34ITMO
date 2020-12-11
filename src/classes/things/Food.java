@@ -51,4 +51,11 @@ public class Food extends Thing {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getTitle()).append(' ').append(this.getValue());
+        return sb.toString();
+    }
 }
