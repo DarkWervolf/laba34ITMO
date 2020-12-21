@@ -4,36 +4,36 @@ import classes.abstracts.Thing;
 
 public class Map {
     protected class Point{
-        private boolean isEmpty_Person;
-        private boolean isEmpty_Thing;
+        private boolean isEmptyPerson;
+        private boolean isEmptyThing;
         private Person person;
         private Thing thing;
 
         public Point() {
-            this.isEmpty_Thing = true;
-            this.isEmpty_Person = true;
+            this.isEmptyThing = true;
+            this.isEmptyPerson = true;
             this.person = null;
             this.thing = null;
         }
 
         public void occupy(Person person){
             this.person = person;
-            this.isEmpty_Person = false;
+            this.isEmptyPerson = false;
         }
 
         public void put(Thing thing){
             this.thing = thing;
-            isEmpty_Thing = false;
+            isEmptyThing = false;
         }
 
         public void leave(){
             this.person = null;
-            isEmpty_Person = true;
+            isEmptyPerson = true;
         }
 
         public void takeAway(){
             this.thing = null;
-            isEmpty_Thing = true;
+            isEmptyThing = true;
         }
 
         public boolean isHere(Person person){
@@ -51,11 +51,11 @@ public class Map {
         }
 
         public boolean isEmpty_Person() {
-            return isEmpty_Person;
+            return isEmptyPerson;
         }
 
         public boolean isEmpty_Thing() {
-            return isEmpty_Thing;
+            return isEmptyThing;
         }
     }
 

@@ -1,12 +1,18 @@
 package classes;
 
+import classes.abstracts.Transport;
 import classes.actions.ActionPerson;
 import classes.actions.ActionStatic;
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
 import classes.enums.*;
+import classes.exceptions.NoPersonException;
 import classes.things.Container;
 import classes.things.Food;
+import classes.transports.Car;
+import classes.transports.Rocket;
+import classes.transports.Ship;
+import classes.transports.Train;
 
 import java.util.Vector;
 
@@ -200,13 +206,16 @@ public class Model {
         }
 
         System.out.println("Duel is over. The winner is " + NPCs.elementAt(0).getName());
+
+        journey();
     }
 
     protected void happyEnd(){
         StringBuilder sb = new StringBuilder();
         sb.append(NPCs.elementAt(0).getName()).append(" and ").append(NPCs.elementAt(1).getName()).append(" decided to marry and live a long happy life!");
         System.out.println(sb.toString());
-        System.out.println("End of story!");
+
+        journey();
     }
 
     protected void action(){
@@ -285,6 +294,48 @@ public class Model {
             case 1:
                 happyEnd();
                 break;
+        }
+    }
+
+    protected void journey(){
+        System.out.println("Journey!");
+
+        int randomTransport = (int) (Math.random() * 4);
+
+        Transport transport;
+        int seats;
+
+        switch (randomTransport){
+            default:
+            case 0:
+                seats = (int) (Math.random() * 4 + 1);
+                transport = new Car(seats, CarType.randomCarType());
+                break;
+            case 1:
+                seats = (int) (Math.random() * 100 + 20);
+                transport = new Ship(seats);
+                break;
+            case 2:
+                seats = (int) (Math.random() * 8 + 3);
+                int partsQuantity = (int) (Math.random() * 5 + 1);
+                int partWeight = (int) (Math.random() * 100 + 30);
+                transport = new Rocket(seats, partsQuantity, partWeight);
+                break;
+            case 3:
+                seats = (int) (Math.random() * 100 + 20);
+                transport = new Train(seats);
+                break;
+        }
+
+        transport.getIn(NPCs.elementAt(0));
+
+        String[] destinations = {"Moon", "Earth", "Javaland"};
+        int randomDestination = (int) (Math.random()*3);
+
+        try {
+            transport.go(destinations[randomDestination]);
+        } catch (NoPersonException e) {
+            System.out.println("How can " + transport.getModel() + "be driven without the driver?");
         }
     }
 
