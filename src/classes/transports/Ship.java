@@ -51,12 +51,21 @@ public class Ship extends Transport implements Drivable {
                     e.printStackTrace();
                 }
 
+                //performing random-long journey
                 int randomLong = (int) (Math.random()*10 + 1);
+                int randomPassenger;
 
                 for (int i = 0; i < randomLong; i++) {
                     System.out.println("Sounds of sea...");
 
+                    //driver's and passenger's emotions
                     getDriver().randomEmotion();
+                    if (getPassengers().size() > 0) {
+                        randomPassenger = (int) (Math.random() * getPassengers().size());
+                        getPassengers().elementAt(randomPassenger).randomEmotion();
+                    }
+
+                    System.out.println();//empty line to make the output look better
 
                     try {
                         Thread.sleep(2000);

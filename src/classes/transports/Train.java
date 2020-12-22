@@ -33,12 +33,21 @@ public class Train extends Transport implements Drivable {
 
             too();
 
-            int randomLong = (int) (Math.random()*10 + 1);
+            int randomLong = (int) (Math.random()*8 + 1);
+            int randomPassenger;
 
+            //performing random-long journey
             for (int i = 0; i < randomLong; i++) {
                 System.out.println("Сlickety-clack...Сlickety-clack...");
 
+                //driver's and passenger's emotions
                 getDriver().randomEmotion();
+                if (getPassengers().size() > 0) {
+                    randomPassenger = (int) (Math.random() * getPassengers().size());
+                    getPassengers().elementAt(randomPassenger).randomEmotion();
+                }
+
+                System.out.println();//empty line to make the output look better
 
                 try {
                     Thread.sleep(2000);

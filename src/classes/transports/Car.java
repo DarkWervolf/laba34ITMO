@@ -37,12 +37,21 @@ public class Car extends Transport implements Drivable {
 
             System.out.println(this.getModel() + " has started!");
 
-            int randomLong = (int) (Math.random()*10 + 1);
+            //performing random-long journey
+            int randomLong = (int) (Math.random()*6 + 1);
+            int randomPassenger;
 
             for (int i = 0; i < randomLong; i++) {
                 System.out.println("Driving...");
 
+                //driver's and passenger's emotions
                 getDriver().randomEmotion();
+                if (getPassengers().size() > 0) {
+                    randomPassenger = (int) (Math.random() * getPassengers().size());
+                    getPassengers().elementAt(randomPassenger).randomEmotion();
+                }
+
+                System.out.println();//empty line to make the output look better
 
                 try {
                     Thread.sleep(2000);

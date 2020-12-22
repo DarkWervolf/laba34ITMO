@@ -28,9 +28,8 @@ public class Model {
     Scheme:
         1. Setting up the parameters: full random or given
         2. Creating model
-        3. Action until there are only two of people
-        4. Random end: duel or happy end
-        5. Journey on random transport
+        3. Action, including travelling to another map (always random)
+        4. Duel or Happy End
      */
 
     protected void createModel(int sizeOfMap, int NPCquantity, int thingsQuantity){
@@ -153,6 +152,8 @@ public class Model {
     }
 
     protected void duel(){
+        System.out.println("Duel time!");
+
         //choosing who's attaking
         int attacker = (int) (Math.random()*1.1);
         int defender;
@@ -209,12 +210,12 @@ public class Model {
         }
 
         System.out.println("Duel is over. The winner is " + NPCs.elementAt(0).getName());
+
+        System.exit(0);
     }
 
     protected void happyEnd(){
         StringBuilder sb = new StringBuilder();
-
-        System.out.println(NPCs.size());
 
         sb.append(NPCs.elementAt(0).getName());
 
@@ -225,7 +226,7 @@ public class Model {
         sb.append(" decided to build a family and live a long happy life!");
         System.out.println(sb.toString());
 
-        journey();
+        System.exit(0);
     }
 
     protected void action(){
@@ -321,7 +322,7 @@ public class Model {
     }
 
     protected void journey(){
-        System.out.println("Journey!");
+        System.out.println("Journey time!");
 
         int randomTransport = (int) (Math.random() * 4);
 
@@ -353,6 +354,8 @@ public class Model {
         for (int i = 0; i < NPCs.size(); i++) {
             transport.getIn(NPCs.elementAt(i));
         }
+
+        System.out.println();
 
         String[] destinations = {"Moon", "Earth", "Javaland"};
         int randomDestination = (int) (Math.random()*destinations.length);
