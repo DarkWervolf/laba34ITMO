@@ -10,7 +10,7 @@ import java.util.Vector;
 
 public class Car extends Transport implements Drivable {
 
-    CarType type;
+    private CarType type;
 
     public Car(int seats, CarType type){
         super(seats);

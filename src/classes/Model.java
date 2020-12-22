@@ -6,6 +6,7 @@ import classes.actions.ActionStatic;
 import classes.abstracts.Action;
 import classes.abstracts.Thing;
 import classes.enums.*;
+import classes.exceptions.InvalidParametrsRunTimeException;
 import classes.exceptions.NoPersonException;
 import classes.things.Container;
 import classes.things.Food;
@@ -21,8 +22,7 @@ public class Model {
     private Vector<Person> NPCs;
     private Vector<Thing> things;
 
-    public Model() {
-    }
+    public Model() {}
 
     /*
     Scheme:
@@ -329,6 +329,7 @@ public class Model {
         Transport transport;
         int seats;
 
+        //choosing transport and creating it
         switch (randomTransport){
             default:
             case 0:
@@ -351,6 +352,7 @@ public class Model {
                 break;
         }
 
+        //getting in transport
         for (int i = 0; i < NPCs.size(); i++) {
             transport.getIn(NPCs.elementAt(i));
         }
@@ -396,29 +398,20 @@ public class Model {
             e.printStackTrace();
         }
 
+        //getting out the car
         NPCs.clear();
         NPCs.addAll(transport.getPassengers());
         NPCs.add(transport.getDriver());
         transport.leaveAll();
 
+        //continuing action
         action();
     }
 
-    public void runWithParameters(int sizeOfMap, int NPCquantity, int thingsQuantity){
-        if (NPCquantity == 1){
-            Person alone = new Person(Names.randomName(), (int) (Math.random() * 100) + 1, (int) (Math.random() * 100) + 1);
-            alone.say("I'm so alone here...");
-            alone.setEmotion(new Emotion(((int) (Math.random() * 100) + 1), EmotionType.SAD));
-            alone.say("I don't wanna live anymore...");
-            alone.changeHP(-alone.getMaxHP());
-        } else if (NPCquantity <= 0){
-            System.out.println("Please, set at least one player!");
-        } else if (sizeOfMap < 4){
-            System.out.println("Please, set the size of map at least 4!");
-        } else if (NPCquantity > Math.pow(sizeOfMap,2) - 2){
-            System.out.println("PLease, choose different quantity of players - it must be no more than size of map squared - 2");
+    public void runWithParameters(int sizeOfMap, int NPCquantity, int thingsQuantity) throws InvalidParametrsRunTimeException {
+        if (NPCquantity < 2 || sizeOfMap <= 0){
+            throw new InvalidParametrsRunTimeException("Invalid data!");
         } else {
-            //initializing variables
             createModel(sizeOfMap, NPCquantity, thingsQuantity);
 
             action();

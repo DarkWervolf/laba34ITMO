@@ -7,7 +7,7 @@ import classes.interfaces.Drivable;
 
 public class Ship extends Transport implements Drivable {
 
-    boolean isBerthed;
+    private boolean isBerthed;
 
     public Ship(int seats) {
         super(seats);

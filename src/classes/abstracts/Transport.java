@@ -8,10 +8,10 @@ import classes.interfaces.Drivable;
 import java.util.Vector;
 
 public abstract class Transport implements Drivable {
-    int seats;
-    String model;
-    Person driver;
-    Vector<Person> passengers;
+    private int seats;
+    private String model;
+    private Person driver;
+    private Vector<Person> passengers;
 
     public Transport(int seats){
         this.seats = seats;

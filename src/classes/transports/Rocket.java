@@ -7,9 +7,9 @@ import classes.interfaces.Drivable;
 
 public class Rocket extends Transport implements Drivable {
 
-    int Weight;
-    int partsQuantity;
-    int partWeight;
+    private int weight;
+    private int partsQuantity;
+    private int partWeight;
 
     public Rocket(int seats, int partsQuantity, int partWeight) {
         super(seats);
@@ -23,13 +23,13 @@ public class Rocket extends Transport implements Drivable {
         if (partWeight <= 0){
             this.partWeight = 100; //in kilograms
         }
-        this.Weight = partsQuantity * partWeight;
+        this.weight = partsQuantity * partWeight;
     }
 
     public void looseWeight(){
         if (partsQuantity > 1) {
             this.partsQuantity--;
-            this.Weight -= partWeight;
+            this.weight -= partWeight;
             System.out.println(this.getModel() + " has lost module!");
         } else {
             System.out.println("It's the last module, capitan!");

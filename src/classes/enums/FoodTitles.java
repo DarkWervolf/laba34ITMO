@@ -5,6 +5,7 @@ import java.util.Random;
 public enum FoodTitles {
     CocaCola,
     Popcorn,
+    GiantSeeds,
     HotDog;
 
     private static final FoodTitles[] VALUES = values();
