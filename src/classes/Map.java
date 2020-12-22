@@ -59,6 +59,11 @@ public class Map {
         }
     }
 
+    @FunctionalInterface
+    public interface CoordinatesCheck {
+        boolean check(int x, int y);
+    }
+
     private Point[][] points;
     private int size;
 
@@ -122,17 +127,17 @@ public class Map {
 
     protected int[] getPosition(Person person){
         int[] position = new int[2]; //x, y coordinates of a person
-        boolean flag_posFound = false; //checking, if person is found
+        boolean flagPosFound = false; //checking, if person is found
         for (int x = 0; x < points.length; x++){
             for (int y = 0; y < points.length; y++){
                 if (points[x][y].isHere(person)){
                     position[0] = x;
                     position[1] = y;
-                    flag_posFound = true;
+                    flagPosFound = true;
                 }
             }
         }
-        if (flag_posFound){
+        if (flagPosFound){
             return position;
         }else{
             return null;
@@ -141,17 +146,17 @@ public class Map {
 
     protected int[] getPosition(Thing thing){
         int[] position = new int[2]; //x, y coordinates of a person
-        boolean flag_posFound = false; //checking, if person is found
+        boolean flagPosFound = false; //checking, if person is found
         for (int x = 0; x < points.length; x++){
             for (int y = 0; y < points.length; y++){
                 if (points[x][y].isHere(thing)){
                     position[0] = x;
                     position[1] = y;
-                    flag_posFound = true;
+                    flagPosFound = true;
                 }
             }
         }
-        if (flag_posFound){
+        if (flagPosFound){
             return position;
         }else{
             return null;
@@ -328,8 +333,10 @@ public class Map {
         }
     }
 
+    //lambda example is used here
     public boolean pointIsEmptyThing(int x, int y){
-        if (!ifCoordinatesAreCorrectCheck(x, y)){
+        CoordinatesCheck check = (xx, yy) -> (xx >= 0 && yy >= 0 && xx < this.size && yy < this.size);
+        if (!check.check(x,y)){
             System.out.println("Coordinates are not correct, please, input different");
             return false;
         }else {
@@ -341,10 +348,7 @@ public class Map {
 
     protected boolean ifCoordinatesAreCorrectCheck(int x, int y){
         //other boolean methods will also return false if coordinates are not correct
-        if (x >= 0 && y >= 0 && x < this.size && y < this.size){
-            return true;
-        }
-        else return false;
+        return x >= 0 && y >= 0 && x < this.size && y < this.size;
     }
 
     public void printMap(){
