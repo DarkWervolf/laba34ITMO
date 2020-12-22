@@ -34,6 +34,7 @@ public class ActionPerson extends Action {
             case PRISONING:
                 //looking for container
                 int containerIndex = -1;
+
                 for (int i = 0; i < person.inventorySize(); i++) {
                     if (person.getThing(i).getType() == ThingType.CONTAINER){
                         containerIndex = i;
