@@ -16,22 +16,22 @@ public abstract class Transport implements Drivable {
     public Transport(int seats){
         this.seats = seats;
         passengers = new Vector<Person>();
-        passengers.setSize(seats);
     }
 
     public Transport(int seats, Person driver){
         this.seats = seats;
         this.driver = driver;
         passengers = new Vector<Person>();
-        passengers.setSize(seats);
     }
 
     public Transport getIn(Person person){
         if (this.driver == null){
             this.driver = person;
+            System.out.println(person.getName() + " got into " + this.getModel());
             return this;
-        } else if (passengers.size() < seats) {
+        } else if (passengers.size() < seats - 1) {
             passengers.add(person);
+            System.out.println(person.getName() + " got into " + this.getModel());
             return this;
         } else {
             System.out.println("No free place!");
@@ -53,6 +53,22 @@ public abstract class Transport implements Drivable {
         }
     }
 
+    public void leaveAll() {
+        int passengersQuantity = passengers.size();
+        for (int i = 0; i < passengersQuantity; i++) {
+            try {
+                leave(passengers.elementAt(0));
+            } catch (NoPersonException e) {
+                System.out.println("No person found!");
+            }
+        }
+        try {
+            this.leave(this.driver);
+        } catch (NoPersonException e) {
+            e.printStackTrace();
+        }
+    }
+
     public int getSeats() {
         return seats;
     }
@@ -67,5 +83,9 @@ public abstract class Transport implements Drivable {
 
     public Person getDriver() {
         return driver;
+    }
+
+    public Vector<Person> getPassengers() {
+        return passengers;
     }
 }

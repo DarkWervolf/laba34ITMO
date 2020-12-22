@@ -56,6 +56,8 @@ public class Ship extends Transport implements Drivable {
                 for (int i = 0; i < randomLong; i++) {
                     System.out.println("Sounds of sea...");
 
+                    getDriver().randomEmotion();
+
                     try {
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {

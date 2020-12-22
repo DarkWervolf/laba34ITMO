@@ -38,41 +38,48 @@ public class Rocket extends Transport implements Drivable {
 
     @Override
     public void go(String destination) throws NoPersonException {
-        System.out.println(this.getModel() + " is ready to go!");
+        if (this.getDriver() != null) {
 
-        for (int i = 10; i > 0; i--) {
-            System.out.println(i);
+            System.out.println(this.getModel() + " is ready to go!");
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int i = 10; i > 0; i--) {
+                System.out.println(i);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        System.out.println("GO!");
-        System.out.println(this.getModel() + " has successfully started!");
+            System.out.println("GO!");
+            System.out.println(this.getModel() + " has successfully started!");
 
-        for (int i = 0; i <= partsQuantity; i++) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int i = 0; i <= partsQuantity; i++) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                looseWeight();
             }
-            looseWeight();
-        }
 
-        int randomLong = (int) (Math.random()*10 + 1);
+            int randomLong = (int) (Math.random() * 10 + 1);
 
-        for (int i = 0; i < randomLong; i++) {
-            System.out.println("Flying...");
+            for (int i = 0; i < randomLong; i++) {
+                System.out.println("Flying...");
 
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                getDriver().randomEmotion();
+
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
-        System.out.println("Finally we arrived on " + destination);
+            System.out.println("Finally we arrived on " + destination);
+        } else {
+            throw new NoPersonException("Rocket can't be launched without astronauts!");
+        }
     }
 }

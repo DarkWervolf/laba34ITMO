@@ -8,6 +8,7 @@ import classes.interfaces.Drivable;
 public class Train extends Transport implements Drivable {
     public Train(int seats) {
         super(seats);
+        this.setModel("Train");
     }
 
     public Train(int seats, Person driver) {
@@ -36,6 +37,8 @@ public class Train extends Transport implements Drivable {
 
             for (int i = 0; i < randomLong; i++) {
                 System.out.println("Сlickety-clack...Сlickety-clack...");
+
+                getDriver().randomEmotion();
 
                 try {
                     Thread.sleep(2000);

@@ -42,6 +42,8 @@ public class Car extends Transport implements Drivable {
             for (int i = 0; i < randomLong; i++) {
                 System.out.println("Driving...");
 
+                getDriver().randomEmotion();
+
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
@@ -50,6 +52,8 @@ public class Car extends Transport implements Drivable {
             }
 
             System.out.println("Finally we arrived on " + destination);
+
+
         } else {
             throw new NoPersonException("No driver!");
         }

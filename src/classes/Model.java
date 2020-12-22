@@ -30,11 +30,13 @@ public class Model {
         2. Creating model
         3. Action until there are only two of people
         4. Random end: duel or happy end
+        5. Journey on random transport
      */
 
     protected void createModel(int sizeOfMap, int NPCquantity, int thingsQuantity){
         map = new Map(sizeOfMap);
 
+        //maiking random things
         int thingType;
         things = new Vector<>();
         for (int i = 0; i < thingsQuantity; i++) {
@@ -54,6 +56,7 @@ public class Model {
 
         }
 
+        //making random NPCs
         NPCs = new Vector<>();
         for (int i = 0; i < NPCquantity; i++) {
             NPCs.add(new Person(Names.randomName(), (int) (Math.random() * 100) + 1, (int) (Math.random() * 100) + 1));
@@ -206,13 +209,20 @@ public class Model {
         }
 
         System.out.println("Duel is over. The winner is " + NPCs.elementAt(0).getName());
-
-        journey();
     }
 
     protected void happyEnd(){
         StringBuilder sb = new StringBuilder();
-        sb.append(NPCs.elementAt(0).getName()).append(" and ").append(NPCs.elementAt(1).getName()).append(" decided to marry and live a long happy life!");
+
+        System.out.println(NPCs.size());
+
+        sb.append(NPCs.elementAt(0).getName());
+
+        for (int i = 1; i < NPCs.size(); i++) {
+            sb.append(" and ").append(NPCs.elementAt(i).getName());
+        }
+
+        sb.append(" decided to build a family and live a long happy life!");
         System.out.println(sb.toString());
 
         journey();
@@ -238,6 +248,11 @@ public class Model {
         }
 
         System.out.println(); //empty line to make the output look better
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //putting NPCs on map
         for (int i = 0; i < this.NPCs.size(); i++) {
@@ -253,13 +268,18 @@ public class Model {
         }
 
         System.out.println(); //empty line to make the output look better
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         map.printMap(); //printing first state of map
 
         //performing random actions
         int randomActionType;
         while (this.NPCs.size() > 2){
-            randomActionType = (int) (Math.random() * 2);
+            randomActionType = (int) (Math.random() * 3);
             if (this.NPCs.size() < 3){
                 break;
             }
@@ -271,6 +291,8 @@ public class Model {
                 case 1:
                     performPersonAction();
                     break;
+                case 2:
+                    journey();
                 default: break;
             }
 
@@ -285,9 +307,10 @@ public class Model {
         map.printMap(); //printing last state of map
 
         //ending
-        int randomEnd = (int) (Math.random()*1.1);
+        int randomEnd = (int) (Math.random()*2);
         switch (randomEnd)
         {
+            default:
             case 0:
                 duel();
                 break;
@@ -327,16 +350,55 @@ public class Model {
                 break;
         }
 
-        transport.getIn(NPCs.elementAt(0));
+        for (int i = 0; i < NPCs.size(); i++) {
+            transport.getIn(NPCs.elementAt(i));
+        }
 
         String[] destinations = {"Moon", "Earth", "Javaland"};
-        int randomDestination = (int) (Math.random()*3);
+        int randomDestination = (int) (Math.random()*destinations.length);
 
         try {
             transport.go(destinations[randomDestination]);
         } catch (NoPersonException e) {
             System.out.println("How can " + transport.getModel() + "be driven without the driver?");
         }
+
+        int randomSizeOfMap = (int) (Math.random() * 10 + 4);
+        map = new Map(randomSizeOfMap);
+
+        //maiking random things
+        int thingsQuantity = (int) (Math.random() * (randomSizeOfMap-1) + 2);
+        int thingType;
+        things = new Vector<>();
+        for (int i = 0; i < thingsQuantity; i++) {
+            thingType = (int) (Math.random()*(ThingType.values().length));
+            switch (thingType)
+            {
+                case 0:
+                    things.add(new Food(FoodTitles.randomFoodTitle(), (int) (Math.random() * 100) + 1));
+                    break;
+                case 1:
+                    things.add(new Container(ContainerTitles.randomContainerTitle(), (int) ((Math.random() * 100) + 1)));
+                    break;
+                default:
+                    things.add(new Food(FoodTitles.randomFoodTitle(), (int) (Math.random() * 100) + 1));
+                    break;
+            }
+        }
+
+        System.out.println();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        NPCs.clear();
+        NPCs.addAll(transport.getPassengers());
+        NPCs.add(transport.getDriver());
+        transport.leaveAll();
+
+        action();
     }
 
     public void runWithParameters(int sizeOfMap, int NPCquantity, int thingsQuantity){
@@ -353,7 +415,6 @@ public class Model {
         } else if (NPCquantity > Math.pow(sizeOfMap,2) - 2){
             System.out.println("PLease, choose different quantity of players - it must be no more than size of map squared - 2");
         } else {
-
             //initializing variables
             createModel(sizeOfMap, NPCquantity, thingsQuantity);
 
