@@ -154,64 +154,68 @@ public class Model {
     protected void duel(){
         System.out.println("Duel time!");
 
-        //choosing who's attaking
-        int attacker = (int) (Math.random()*1.1);
-        int defender;
-        if (attacker == 1){
-            defender = 0;
-        } else defender = 1;
-        this.map.moveToPerson(NPCs.elementAt(attacker), NPCs.elementAt(defender));
+        if (NPCs.size() > 1) {
 
-        //printing some text
-        StringBuilder sb = new StringBuilder();
-        sb.append("Fighters are: ").append(NPCs.elementAt(attacker).getName()).append(": ").append(NPCs.elementAt(attacker).getHP()).append(" and ").append(NPCs.elementAt(defender).getName()).append(": ").append(NPCs.elementAt(defender).getHP());
-        System.out.println(sb.toString());
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Let the Duel start!");
+            //choosing who's attaking
+            int attacker = (int) (Math.random() * 1.1);
+            int defender;
+            if (attacker == 1) {
+                defender = 0;
+            } else defender = 1;
+            this.map.moveToPerson(NPCs.elementAt(attacker), NPCs.elementAt(defender));
 
-        //dueling
-        int attackType, value, temp;
-        while (NPCs.elementAt(attacker).getHP() > 0 && NPCs.elementAt(defender).getHP() > 0){
-            //performing attack
-            attackType = (int) (Math.random());
-            value = (int) (Math.random() * 100);
-            switch (attackType)
-            {
-                case 0:
-                    NPCs.elementAt(attacker).performAction(new ActionPerson(value, ActionTypePerson.BEATING), NPCs.elementAt(defender));
-                    break;
-                case 1:
-                    NPCs.elementAt(attacker).performAction(new ActionPerson(value, ActionTypePerson.KICKING), NPCs.elementAt(defender));
-                    break;
-            }
-
-            //making pause between actions
-            System.out.println();
+            //printing some text
+            StringBuilder sb = new StringBuilder();
+            sb.append("Fighters are: ").append(NPCs.elementAt(attacker).getName()).append(": ").append(NPCs.elementAt(attacker).getHP()).append(" and ").append(NPCs.elementAt(defender).getName()).append(": ").append(NPCs.elementAt(defender).getHP());
+            System.out.println(sb.toString());
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("Let the Duel start!");
 
-            //changing roles
-            temp = defender;
-            defender = attacker;
-            attacker = temp;
-        }
+            //dueling
+            int attackType, value, temp;
+            while (NPCs.elementAt(attacker).getHP() > 0 && NPCs.elementAt(defender).getHP() > 0) {
+                //performing attack
+                attackType = (int) (Math.random());
+                value = (int) (Math.random() * 100);
+                switch (attackType) {
+                    case 0:
+                        NPCs.elementAt(attacker).performAction(new ActionPerson(value, ActionTypePerson.BEATING), NPCs.elementAt(defender));
+                        break;
+                    case 1:
+                        NPCs.elementAt(attacker).performAction(new ActionPerson(value, ActionTypePerson.KICKING), NPCs.elementAt(defender));
+                        break;
+                }
 
-        if (NPCs.elementAt(attacker).getHP() == 0){
-            NPCs.remove(attacker);
+                //making pause between actions
+                System.out.println();
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //changing roles
+                temp = defender;
+                defender = attacker;
+                attacker = temp;
+            }
+
+            if (NPCs.elementAt(attacker).getHP() == 0) {
+                NPCs.remove(attacker);
+            } else {
+                NPCs.remove(defender);
+            }
+
+            System.out.println("Duel is over. The winner is " + NPCs.elementAt(0).getName());
+
+            System.exit(0);
         } else {
-            NPCs.remove(defender);
+            System.out.println("No people for duel found! Game over!");
         }
-
-        System.out.println("Duel is over. The winner is " + NPCs.elementAt(0).getName());
-
-        System.exit(0);
     }
 
     protected void happyEnd(){
@@ -280,10 +284,8 @@ public class Model {
         //performing random actions
         int randomActionType;
         while (this.NPCs.size() > 2){
-            randomActionType = (int) (Math.random() * 3);
-            if (this.NPCs.size() < 3){
-                break;
-            }
+            randomActionType = (int) (Math.random() * 4);
+
             switch (randomActionType)
             {
                 case 0:
@@ -294,6 +296,10 @@ public class Model {
                     break;
                 case 2:
                     journey();
+                    break;
+                case 3:
+                    movie();
+                    break;
                 default: break;
             }
 
@@ -406,6 +412,19 @@ public class Model {
 
         //continuing action
         action();
+    }
+
+    protected void movie(){
+        System.out.println("Movie time!");
+        String[] movies = {"Arrival", "Fargo", "The Crow", "Taxi", "Tenet"};
+        int randomMovie = (int) (Math.random()* movies.length);
+        int duration = (int) (Math.random()*2 + 1);
+
+        Cinema cinema = new Cinema(NPCs.size(),movies[randomMovie],duration);
+
+        cinema.enter(NPCs);
+        cinema.watch();
+        cinema.exit();
     }
 
     public void runWithParameters(int sizeOfMap, int NPCquantity, int thingsQuantity) throws InvalidParametrsRunTimeException {

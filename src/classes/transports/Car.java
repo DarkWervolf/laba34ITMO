@@ -14,13 +14,13 @@ public class Car extends Transport implements Drivable {
 
     public Car(int seats, CarType type){
         super(seats);
-        this.setModel("Car");
+        this.setModel(CarType.randomCarType().toString() + "car");
         this.type = type;
     }
 
     public Car(int seats, CarType type, Person driver){
         super(seats, driver);
-        this.setModel("Car");
+        this.setModel(CarType.randomCarType().toString() + "car");
         this.type = type;
     }
 
