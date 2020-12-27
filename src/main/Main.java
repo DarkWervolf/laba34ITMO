@@ -6,6 +6,8 @@ import classes.interfaces.Startable;
 public class Main {
 
     public static void main(String[] args) {
+        //commented block below will cause fatal (RunTime) error because of 0 NPC input
+        //Model model = new Model();
         //model.runWithParameters(4, 0, 16);
 
         //example of using anonymous classes

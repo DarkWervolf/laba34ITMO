@@ -25,6 +25,7 @@ public abstract class Transport implements Drivable {
     }
 
     public Transport getIn(Person person){
+        //who gets in first - drives
         if (this.driver == null){
             this.driver = person;
             System.out.println(person.getName() + " got into " + this.getModel());
@@ -40,6 +41,7 @@ public abstract class Transport implements Drivable {
     }
 
     public void leave(Person person) throws NoPersonException {
+        //driver always leaves the last
         if (this.driver.equals(person) && !passengers.isEmpty()){
             System.out.println("Driver cannot leave the car until everyone leaves!");
         } else if (this.driver.equals(person)){

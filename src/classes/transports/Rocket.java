@@ -42,6 +42,7 @@ public class Rocket extends Transport implements Drivable {
 
             System.out.println(this.getModel() + " is ready to go!");
 
+            //countdown
             for (int i = 10; i > 0; i--) {
                 System.out.println(i);
 
@@ -54,6 +55,7 @@ public class Rocket extends Transport implements Drivable {
             System.out.println("GO!");
             System.out.println(this.getModel() + " has successfully started!");
 
+            //loosing weight
             for (int i = 0; i <= partsQuantity; i++) {
                 try {
                     Thread.sleep(2000);

@@ -25,11 +25,24 @@ public class Model {
     public Model() {}
 
     /*
-    Scheme:
+    Scheme (schort):
         1. Setting up the parameters: full random or given
         2. Creating model
-        3. Action, including travelling to another map (always random)
+        3. Action, including travelling to another map (always random) and going to cinema
         4. Duel or Happy End
+     */
+    /*
+    How it works (in random):
+        We create a map of random size within reason and placing there things and people.
+    People are free to move around, so they move to one another and perform some actions (PersonAction).
+    Also, without moving, they can do static action.
+    Person action contains prisoning, so one person can put another into cage and keep there until he wants to free the prisoner.
+    Then he lets him go.
+    NPCs can go and watch movie.
+        People can also travel: they get in some transport, drive, and while driving they express emotions - one is always driver's emotion,
+    another is random passenger's emotion. When they arrive, the new map with new random things is being created, where they take positions.
+    Then action continues.
+        When there are only 2 people left, they will do one of two things (randomly): they'll go and live a long life, or they will fight.
      */
 
     protected void createModel(int sizeOfMap, int NPCquantity, int thingsQuantity){
@@ -284,7 +297,7 @@ public class Model {
         //performing random actions
         int randomActionType;
         while (this.NPCs.size() > 2){
-            randomActionType = (int) (Math.random() * 4);
+            randomActionType = (int) (Math.random() * 10);
 
             switch (randomActionType)
             {
@@ -300,7 +313,13 @@ public class Model {
                 case 3:
                     movie();
                     break;
-                default: break;
+                default:
+                    if (randomActionType > 5){
+                        performPersonAction();
+                    } else {
+                        performStaticAction();
+                    }
+                    break;
             }
 
             //making pause between actions
@@ -365,6 +384,7 @@ public class Model {
 
         System.out.println();
 
+        //choosing destination
         String[] destinations = {"Moon", "Earth", "Javaland"};
         int randomDestination = (int) (Math.random()*destinations.length);
 
@@ -374,6 +394,7 @@ public class Model {
             System.out.println("How can " + transport.getModel() + "be driven without the driver?");
         }
 
+        //creating new map == place where we arrived
         int randomSizeOfMap = (int) (Math.random() * 10 + 4);
         map = new Map(randomSizeOfMap);
 
@@ -404,7 +425,7 @@ public class Model {
             e.printStackTrace();
         }
 
-        //getting out the car
+        //getting out of the car
         NPCs.clear();
         NPCs.addAll(transport.getPassengers());
         NPCs.add(transport.getDriver());
@@ -416,6 +437,7 @@ public class Model {
 
     protected void movie(){
         System.out.println("Movie time!");
+        //declaring movies and choosing one and its duration
         String[] movies = {"Arrival", "Fargo", "The Crow", "Taxi", "Tenet"};
         int randomMovie = (int) (Math.random()* movies.length);
         int duration = (int) (Math.random()*2 + 1);

@@ -4,6 +4,7 @@ import classes.actions.ActionPerson;
 import classes.actions.ActionStatic;
 import classes.abstracts.Thing;
 import classes.enums.EmotionType;
+import classes.enums.ThingType;
 import classes.interfaces.Alive;
 import classes.interfaces.Movable;
 
@@ -57,6 +58,7 @@ public class Person implements Movable, Alive {
 
     public void changeHP(int change){
         StringBuilder sb = new StringBuilder();
+        int oldHP = this.HP;
         char sign; //sign of change
         if (change < 0){
             sign = '-';
@@ -64,7 +66,7 @@ public class Person implements Movable, Alive {
             sign = '+';
         } else sign = ' ';
 
-        //making the change
+        //making the change, if out of borders - making max or min
         boolean diedFlag = false;
         if (change+this.HP > maxHP){
             change = maxHP-this.HP;
@@ -86,6 +88,16 @@ public class Person implements Movable, Alive {
             sb.delete(0, sb.length());
             sb.append("Current HP of ").append(this.getName()).append(" is ").append(this.HP);
             System.out.println(sb.toString());
+
+            if (this.HP < oldHP){
+                for (int i = 0; i < this.inventorySize(); i++) {
+                    if (this.inventory.elementAt(i).getType() == ThingType.FOOD){
+                        System.out.println("Healing...");
+                        this.useThing(inventory.elementAt(i));
+                        break;
+                    }
+                }
+            }
         }
     }
 
